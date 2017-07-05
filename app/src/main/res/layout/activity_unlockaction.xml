@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.lfish.control.action.activity.UnLockActionActivity">
+
+    <!-- Login progress -->
+    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" android:visibility="gone" />
+
+    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent" android:layout_marginTop="20dip"
+            android:layout_height="wrap_content" android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/iv_unlock_action_ico"
+                    android:layout_width="60dip"
+                    android:layout_height="60dip" android:layout_marginLeft="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_marginLeft="10dip"
+                    android:layout_height="wrap_content" android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_unlock_action_name"
+                        android:layout_width="wrap_content" android:textSize="20sp" android:layout_marginTop="10dip"
+                        android:layout_height="wrap_content" android:textColor="@color/colorhint" />
+
+                    <TextView
+                        android:id="@+id/tv_unlock_action_des"
+                        android:layout_width="wrap_content" android:textSize="15sp" android:layout_marginTop="10dip"
+                        android:layout_height="wrap_content" android:textColor="@color/colorchoose" />
+
+                    <TextView
+                        android:id="@+id/tv_unlock_action_price"
+                        android:layout_width="wrap_content" android:textSize="15sp" android:layout_marginTop="10dip"
+                        android:layout_height="wrap_content" android:textColor="#F44E44" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.lfish.control.view.PayView android:id="@+id/pv_unlock"
+                android:layout_width="match_parent" android:layout_marginTop="30dip"
+                android:layout_height="wrap_content"></com.lfish.control.view.PayView>
+
+            <!--<info.hoang8f.widget.FButton-->
+                <!--android:id="@+id/bt_unlock_action_pay"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--fbutton:buttonColor="@color/btn_main_color"-->
+            <!--fbutton:shadowColor="@color/btn_main_color_shadow"-->
+            <!--fbutton:shadowEnabled="true"-->
+            <!--fbutton:shadowHeight="3dp" android:textSize="15sp"-->
+            <!--fbutton:cornerRadius="5dp" android:textColor="#313030" android:textStyle="bold"-->
+             <!--android:paddingLeft="20dip" android:text="12" android:paddingRight="20dip"-->
+                <!--android:layout_marginTop="30dp"-->
+            <!--/>-->
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

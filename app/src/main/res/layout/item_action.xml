@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dip">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_centerInParent="true"
+        android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+        <com.lfish.control.view.CircleImageView
+            android:layout_width="40dip"
+            android:layout_height="40dip" android:src="@drawable/phone_ico"
+            android:clickable="true"
+            app:riv_borderColor="#fff"
+            app:riv_borderWidth="1px"
+            app:riv_hoverColor="#22000000" android:id="@+id/iv_ico" />
+
+        <TextView android:id="@+id/tv_name" android:layout_marginTop="10dip"
+            android:layout_width="wrap_content" android:textSize="12sp" android:textColor="#2B2B2B"
+            android:layout_height="wrap_content" android:text="设备信息" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent" android:layout_alignParentBottom="true"
+        android:layout_height="1px" android:background="#D9E0E4"></View>
+
+    <View
+        android:layout_width="1dip" android:layout_alignParentRight="true"
+        android:layout_height="match_parent" android:background="#D9E0E4"></View>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent" android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="30px">
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_centerInParent="true"
+            android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+            <com.lfish.control.view.CircleImageView
+                android:layout_width="50dip"
+                android:layout_height="50dip" android:src="@drawable/phone_ico"
+                android:clickable="true" android:scaleType="center"
+                app:riv_borderColor="#fff"
+                app:riv_borderWidth="1px"
+                app:riv_hoverColor="#22000000" android:id="@+id/iv_ico" />
+
+        <TextView android:layout_marginTop="10dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="点击选择可控设备" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_marginTop="30dip">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</LinearLayout>

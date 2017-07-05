@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+    <TextView android:textColor="@color/black_deep" android:textSize="15sp"
+        android:layout_width="match_parent" android:gravity="center_vertical" android:paddingLeft="20px"
+        android:layout_height="100px" android:text="请选择支付方式" android:background="#EEEDEB" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:weightSum="2" android:background="@android:color/white" >
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:id="@+id/rl_alipay"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:padding="25dip"
+                android:layout_width="wrap_content" android:layout_centerInParent="true"
+                android:layout_height="wrap_content" android:src="@drawable/alipay_logo" />
+
+            <TextView android:id="@+id/tv_unlock_aliprice" android:visibility="gone"
+                android:layout_width="wrap_content" android:text="" android:layout_centerVertical="true"
+                android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/holo_red_light" android:layout_alignParentRight="true" android:layout_marginRight="40dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:layout_alignParentBottom="true"
+                android:background="#EEEDEB"></View>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent" android:layout_alignParentBottom="true"
+            android:background="#EEEDEB"></View>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:id="@+id/rl_wechat"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView android:padding="30dip"
+                android:layout_width="wrap_content"  android:layout_centerInParent="true"
+                android:layout_height="wrap_content" android:src="@drawable/wepaylogo" />
+
+            <TextView android:id="@+id/tv_unlock_wechatprice" android:visibility="gone"
+                android:layout_width="wrap_content" android:text="" android:layout_centerVertical="true"
+                android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/holo_red_light" android:layout_alignParentRight="true" android:layout_marginRight="40dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:layout_alignParentBottom="true"
+                android:background="#EEEDEB"></View>
+        </RelativeLayout>
+        </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#F3F2F3" >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_devices" android:backgroundTint="@color/activity_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:background="@color/activity_bg">
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout android:visibility="gone"
+        android:id="@+id/ll_nodeviceshow"
+        android:layout_width="match_parent" android:background="#F44E43" android:orientation="vertical"
+        android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <LinearLayout
+            android:layout_width="wrap_content" android:padding="20dip" android:gravity="center"
+            android:layout_height="wrap_content" android:orientation="vertical">
+           <TextView
+            android:layout_width="match_parent" android:textColor="@android:color/white" android:textSize="15sp"
+            android:layout_height="wrap_content" android:text="亲爱的家长：" />
+            <TextView
+                android:layout_width="match_parent" android:textColor="@android:color/white" android:textSize="12sp"
+                android:layout_height="wrap_content" android:text="1.您和孩子如已同意监控行为的产生，请点击下方按钮，创建一个被控账号。" />
+            <TextView
+                android:layout_width="wrap_content" android:textColor="@android:color/white" android:textSize="12sp"
+                android:layout_height="wrap_content" android:text="2.在您孩子的手机中同样安装此App应用，用注册的被控账号登录，即可控制孩子的手机。" />
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_regist_child_number"
+            android:layout_width="match_parent"   android:textSize="15sp" android:textColor="@android:color/white" android:text="同意并注册"
+            android:layout_height="50dip" android:background="#06CD00" />
+
+            <View android:id="@+id/v_device_contain"
+                android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+                android:layout_height="50dip" android:clickable="false"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

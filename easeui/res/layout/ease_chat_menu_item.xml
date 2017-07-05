@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp" >
+
+        <View android:id="@+id/v_device_contain"
+            android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+            android:layout_height="match_parent" android:clickable="false"/>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter" />
+
+        <ImageView
+            android:id="@+id/iv_action_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" android:src="@drawable/lock_action" android:layout_centerHorizontal="true" android:paddingLeft="40dp"/>
+
+        <TextView android:textStyle="bold"
+            android:id="@+id/tv_action_price"
+            android:layout_width="wrap_content"  android:layout_centerHorizontal="true" android:paddingLeft="40dp" android:layout_alignParentBottom="true" android:textColor="@android:color/holo_red_light"
+            android:layout_height="wrap_content" android:textSize="10sp" android:text="12￥" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/attach_take_pic" android:textSize="12sp"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

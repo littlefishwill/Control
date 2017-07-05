@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical" android:background="@android:color/white"
+    tools:context="com.lfish.control.user.register.YszcActivity">
+
+    <!-- Login progress -->
+    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" android:visibility="gone" />
+
+    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout android:id="@+id/ll_yszc_contain" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView
+                android:paddingLeft="20dip" android:paddingRight="20dip"
+                android:layout_width="match_parent" android:text="软件操作场景说明" android:textColor="#2E8BE0"
+                android:layout_height="40dp" android:textSize="15sp" android:gravity="center_vertical" android:background="#30394165" />
+
+            <TextView
+                android:paddingLeft="20dip" android:paddingRight="20dip" android:lineSpacingExtra="10dp"
+                android:layout_width="match_parent" android:text="软件操作场景说明，该软件适用于的场景，为同一用户的多设备之间的数据传输，软件会获取到用户的数据信息进行传输，请用户仔细阅读以下隐私条例。
+\n我们承诺，App 绝对不会私自采集收集用户的，设备固件信息，联系人信息，短信内容，地理位置，通话记录，浏览器记录，前后摄像头数据，SD卡信息。" android:textColor="#2B2B2B"
+                android:layout_height="wrap_content" android:textSize="15sp" android:gravity="center_vertical" />
+
+            <TextView
+                android:paddingLeft="20dip" android:paddingRight="20dip"
+                android:layout_width="match_parent" android:text="用户的隐私数据获取以及用户的行为导向说明" android:textColor="#2E8BE0"
+                android:layout_height="40dp" android:textSize="15sp" android:gravity="center_vertical" android:background="#30394165" />
+
+            <TextView
+                android:paddingLeft="20dip" android:paddingRight="20dip" android:lineSpacingExtra="10dp"
+                android:layout_width="match_parent" android:text="App更多的依赖同一用户多台设备之间的数据传输，为了您更好的使用。我们会为您详细介绍用户的数据传递，和用户的行为导向。
+\nApp 分为两级用户，主账号（主控设备），与子账号（被控设备）。
+\n主账号可以控制多个子账号进行资料传输与行为控制，子账号不可以控制主账号。
+\n主控设备点击获取设备信息时，App会获取被控设备的，手机名称，硬件信息，以及网络连接状态传输给主账号。
+\n主控设备点击获取通讯录时，App会获取被控设备的，通讯录信息，传输给主控设备。
+\n主控设备点击获取短信息，App会获取被控设备的，所有短信息，传输给主控设备。
+\n主控设备点击获取位置时，App会获取被控设备的，Gps地理位置信息，传输给主控设备。
+\n主控设备点击获取通话记录时，App会获取被控设备的，通话记录信息，传输给主控设备。
+\n主控设备点击获取应用列表时，App会获取被控设备安装的所有应用信息，传输给主控设备。
+\n主控设备点击获取相册时，App会获取被控设备相册图片，传输给主控设备。
+\n主控设备点击前拍照时，App会操作被控设备前置摄像头拍照，并把照片传输给主控设备。
+\n主控设备点击后拍照时，App会操作被控设备后置摄像头拍照，并把照片传输给主控设备。
+\n主控设备点击设备锁屏时，App会操被控作设备进行锁屏操作，如果主控设备选择设置密码，那么被控设备会设置密码（此功能要求用户同意激活设备管理器，用户如果不同意，则此功能失效）。" android:textColor="#2B2B2B"
+                android:layout_height="wrap_content" android:textSize="15sp" android:gravity="center_vertical" />
+
+            <TextView
+                android:paddingLeft="20dip" android:paddingRight="20dip"
+                android:layout_width="match_parent" android:text="变更" android:textColor="#2E8BE0"
+                android:layout_height="40dp" android:textSize="15sp" android:gravity="center_vertical" android:background="#30394165" />
+
+            <TextView
+                android:paddingLeft="20dip" android:paddingRight="20dip"  android:lineSpacingExtra="10dp"
+                android:layout_width="match_parent" android:text="我们可能适时修订本《隐私政策》的条款，该等修订构成本《隐私政策》的一部分。如该等修订造成您在本《隐私政策》下权利的实质减少，我们将在修订生效前通过在主页上显著位置提示或向您发送电子邮件或以其他方式通知您。在该种情况下，若您继续使用我们的服务，即表示同意受经修订的本《隐私政策》的约束。" android:textColor="#2B2B2B"
+                android:layout_height="wrap_content" android:textSize="15sp" android:gravity="center_vertical" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

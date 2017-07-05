@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_devices"
+            android:icon="@drawable/play_game"
+            android:title="可监控设备" />
+
+        <item
+            android:id="@+id/nav_addchildnumber"
+            android:icon="@drawable/add"
+            android:title="创建受监控账号" />
+
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/unlock"
+            android:title="解锁功能" />
+    </group>
+
+    <item android:title="其他">
+        <menu>
+            <item
+                android:id="@+id/nav_talk"
+                android:icon="@drawable/talkme"
+                android:title="联系我们" />
+            <item
+                android:id="@+id/nav_privateservice"
+                android:icon="@drawable/privateservice"
+                android:title="私人定制服务" />
+        </menu>
+    </item>
+
+    <item android:title="设置">
+        <menu>
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/power_off"
+                android:title="退出账号" />
+        </menu>
+    </item>
+
+
+</menu>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="20dip">
+
+
+    <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView android:id="@+id/lockpass" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/activity_enterpsw"
+            android:inputType="textPhonetic" android:maxLines="1" android:numeric="integer" android:maxLength="4"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout android:layout_marginTop="50dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="2">
+
+        <Button android:id="@+id/bt_lockscreen_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/activity_lockscreen_submit" />
+
+        <Button android:id="@+id/bt_lockscreen_cancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/activity_lockscreen_cancle" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
