@@ -1,22 +1,42 @@
 package com.lfish.control.child;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.lfish.control.BaseActivity;
+import com.lfish.control.Config;
 import com.lfish.control.R;
+import com.lfish.control.control.dao.UserAskDao;
+import com.lfish.control.http.HttpManager;
 import com.lfish.control.user.UserManager;
+import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
+import com.lfish.control.utils.DesUtils;
+import com.lfish.control.utils.PhoneUtils;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 /**
  * Created by SuZhiwei on 2016/9/10.
  */
 public class ChildShowActivity extends BaseActivity {
-    Button exit;
+    private Button exit;
+    private ImageView qrCodeImage;
+    private TextView tvloginName;
+    private LinearLayout askList,controlList,activityBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +46,74 @@ public class ChildShowActivity extends BaseActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        qrCodeImage = (ImageView) findViewById(R.id.iv_csa_zcode);
+        tvloginName = (TextView) findViewById(R.id.tv_login_name);
         exit = (Button) findViewById(R.id.btn_childshow_exit);
+
+        activityBtn = (LinearLayout) findViewById(R.id.ll_childshow_action);
+
+        qrCodeLogic();
+        exitLogic();
+
+        //活动逻辑
+        activityLogic();
+
+    }
+
+    private void activityLogic() {
+        activityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(HttpManager.BBSURL);
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void qrCodeLogic() {
+        new AsyncTask<Void, Void, Void>() {
+            private Bitmap mBitmap;
+            private String loginName;
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                //加密
+                User loginUser = UserManager.getInstance().getLoginUser(ChildShowActivity.this);
+                loginName = loginUser.getUserName();
+                String passWord = loginUser.getPassWord();
+                String imei= PhoneUtils.getInstance().getImei(ChildShowActivity.this);
+                UserAskDao userAskDao = new UserAskDao(loginName, imei, System.currentTimeMillis());
+                try {
+                    DesUtils desUtils = new DesUtils(passWord);
+                    String encrypt = desUtils.encrypt(userAskDao.toString());
+                    mBitmap = CodeUtils.createImage(encrypt, 400, 400, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                qrCodeImage.setImageBitmap(mBitmap);
+                tvloginName.setText(loginName);
+                //定时更新二维码
+                tvloginName.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        qrCodeLogic();
+                    }
+                }, Config.CHILD_QRCODE_FINSHTIME);
+            }
+        }.execute();
+
+    }
+
+    private void exitLogic() {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,6 +1,16 @@
 package com.lfish.control;
 
 public class Config {
+
+	/**
+	 * 二维码过期时间
+	 */
+	public static long CHILD_QRCODE_FINSHTIME = 10*60*1000;
+
+	/**
+	 * 二维码 申请控制 开始标记
+	 */
+	public static String QRCODE_RESON_START_TAG ="p:";
 	
 	public static Object lock = new Object();
 	

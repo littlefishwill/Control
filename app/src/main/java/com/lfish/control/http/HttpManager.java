@@ -25,11 +25,12 @@ public class HttpManager  extends BaseManager{
     public static final String HTTP_PASSWORD = "http_password";
     //----------------------------------------end spdata
 
-
     private static final String HOST="http://47.92.77.123";
     private static final String USER_REGISTER ="/supervisor/app/register";
     private static final String USER_LOGIN ="/supervisor/app/login";
     private static final String USER_ACTIONLIST ="/supervisor/app/actionlist";
+
+    public static final String BBSURL ="http://gjgj.bbs.am/";
 
     public void sendPostRequest(RequestParams requestParams,HttpBaseCallBack commonCallback ){
         requestParams.setConnectTimeout(10000);

@@ -10,22 +10,99 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout android:gravity="center"
-                android:layout_width="wrap_content" android:layout_centerInParent="true"
-                android:layout_height="wrap_content" android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="恭喜您~" android:textSize="30sp" />
-            <TextView
-                android:layout_width="wrap_content" android:textSize="20sp" android:layout_marginTop="20dp"
-                android:layout_height="match_parent" android:text="该手机可以成功被主账号监控了~" />
-            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_centerHorizontal="true"  android:layout_marginTop="10dip"
+                android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal">
+                <ImageView
+                    android:id="@+id/iv_csa_zcode"
+                    android:layout_width="150dip" android:padding="20dp" android:background="@color/colorhint"
+                    android:layout_height="150dip"  />
+                <TextView
+                    android:layout_width="wrap_content" android:textSize="12sp" android:layout_marginTop="10dip"
+                    android:layout_height="wrap_content" android:textColor="@color/colorhint" android:text="@string/action_childshow_qrcode_des" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dip" android:layout_marginTop="10dip">
+
+                    <View
+                        android:layout_width="match_parent" android:layout_centerInParent="true"
+                        android:layout_height="1px" android:background="@color/colorchoose"></View>
+                <TextView android:id="@+id/tv_login_name"
+                    android:layout_width="wrap_content" android:textSize="18sp" android:layout_centerInParent="true" android:paddingRight="10dip" android:paddingLeft="10dip"
+                    android:layout_height="wrap_content" android:textColor="@color/colorhint" android:text="qwer" android:background="@color/activity_bg" />
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_marginTop="20dp"
+                    android:layout_height="100dip" android:weightSum="3" android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                        <View
+                            android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:id="@+id/ll_childshow_asklist"
+                            android:layout_width="match_parent" android:gravity="center"
+                            android:layout_height="match_parent" android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="40dip"
+                                android:layout_height="40dip" android:src="@drawable/ask_box" />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/ask_list"
+                                android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <View
+                        android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:id="@+id/ll_childshow_control_list"
+                        android:layout_width="match_parent"  android:gravity="center"
+                        android:layout_height="match_parent" android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="40dip"
+                            android:layout_height="40dip" android:src="@drawable/control_ico" />
+                        <TextView
+                            android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/control_list"
+                            android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
+                    </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <View
+                        android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:id="@+id/ll_childshow_action"
+                        android:layout_width="match_parent"  android:gravity="center"
+                        android:layout_height="match_parent" android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="40dip"
+                            android:layout_height="40dip" android:src="@drawable/forum_ico" />
+                        <TextView
+                            android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/title_activity_guanfang"
+                            android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
+                    </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
             <Button
                 android:id="@+id/btn_childshow_exit"
                 android:layout_alignParentBottom="true"
                 android:layout_width="300dip" android:layout_centerHorizontal="true"
-                android:layout_height="70dip" android:text="退出登录" />
+                android:layout_height="50dip" android:text="退出登录" />
         </RelativeLayout>
 
 </LinearLayout>

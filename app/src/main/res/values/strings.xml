@@ -11,6 +11,10 @@
     <string name="title_activity_register_yszc">隐私政策</string>
     <string name="title_activity_child">诡计管家-监控中</string>
     <string name="title_activity_unlockaction">解锁功能</string>
+    <string name="title_activity_guanfang">官方活动</string>
+
+    <string name="ask_list">申请列表</string>
+    <string name="control_list">主控列表</string>
 
 
     <string name="app_register_waring">点击上面的“注册”按钮，即表示你同意 《诡计管家隐私政策》 </string>
@@ -18,6 +22,8 @@
     <string name="device_testnumber_des">点此进入可以“免费”体验诡计管家“所有功能”</string>
 
     <string name="device_sys_autocreate_childnumber_des">您需要在其他设备上登录“%1$s”（密码同当前登录账号密码一致），既可操作 %2$s 登录的设备</string>
+
+    <string name="action_childshow_qrcode_des">(扫描上方的二维码,即可操控该设备)</string>
 
     <string name="app_register_waring_name"></string>
 

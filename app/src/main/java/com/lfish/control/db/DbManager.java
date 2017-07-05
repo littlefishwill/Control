@@ -4,8 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import com.lfish.control.db.dao.AskInfo;
 import com.lfish.control.db.dao.Device;
 import java.sql.SQLException;
 
@@ -14,7 +16,30 @@ import java.sql.SQLException;
  */
 public class DbManager extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "control";
-    public DbManager(Context context) {
+    private static DbManager instance;
+
+    /**
+     * 单例获取该Helper
+     *
+     * @param context
+     * @return
+     */
+    public static synchronized DbManager getHelper(Context context)
+    {
+        context = context.getApplicationContext();
+        if (instance == null)
+        {
+            synchronized (DbManager.class)
+            {
+                if (instance == null)
+                    instance = new DbManager(context);
+            }
+        }
+
+        return instance;
+    }
+
+    private DbManager(Context context) {
         super(context, TABLE_NAME, null,0);
     }
 
@@ -23,6 +48,7 @@ public class DbManager extends OrmLiteSqliteOpenHelper {
         try
         {
             TableUtils.createTable(connectionSource, Device.class);
+            TableUtils.createTable(connectionSource, AskInfo.class);
         } catch (SQLException e)
         {
             e.printStackTrace();
@@ -34,10 +60,30 @@ public class DbManager extends OrmLiteSqliteOpenHelper {
         try
         {
             TableUtils.dropTable(connectionSource, Device.class, true);
+            TableUtils.dropTable(connectionSource, AskInfo.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * 获得userDao
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Dao<AskInfo, Integer> getAskDao() throws SQLException
+    {
+        Dao userDao = null;
+        if (userDao == null)
+        {
+            userDao = getDao(AskInfo.class);
+        }
+        return userDao;
+    }
+
+
 }
