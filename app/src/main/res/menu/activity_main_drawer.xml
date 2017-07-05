@@ -10,7 +10,7 @@
         <item
             android:id="@+id/nav_addchildnumber"
             android:icon="@drawable/add"
-            android:title="创建受监控账号" />
+            android:title="添加被控账号" />
 
         <item
             android:id="@+id/nav_manage"

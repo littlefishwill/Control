@@ -23,6 +23,7 @@ import org.xutils.x;
  */
 public class UserManager extends BaseManager {
     private static UserManager userManager;
+    private User cacheUser;
     public static final String testNumber  = "GJ-TEST";
     public static UserManager getInstance(){
         if(userManager==null){
@@ -77,6 +78,9 @@ public class UserManager extends BaseManager {
     }
 
     public User getLoginUser(Context context){
+        if(cacheUser!=null){
+            return cacheUser;
+        }
         String userJson = Sputils.getInstance(context).getObject(this, SP_KEY_USER, "");
         User user = new Gson().fromJson(userJson, User.class);
         return user;
@@ -98,8 +102,8 @@ public class UserManager extends BaseManager {
             public void onSuccess() {
                 EMClient.getInstance().groupManager().loadAllGroups();
                 EMClient.getInstance().chatManager().loadAllConversations();
-                Log.d("main", "登录聊天服务器成功！");
-                Sputils.getInstance(context).putObject(UserManager.this, SP_KEY_USER, new Gson().toJson(user));
+                Log.d("main", "登录聊天服务器成功！"+user);
+                UserManager.getInstance().saveLoginUser(user);
                 Sputils.getInstance(context).putObject(UserManager.this,SP_KEY_ISLOGIN,true);
                 if(UserManager.this.loginListener!=null){
                     UserManager.this.loginListener.onSuccess(user);
@@ -127,6 +131,7 @@ public class UserManager extends BaseManager {
      * @param user
      */
     public void saveLoginUser(User user){
+        cacheUser = user;
         Sputils.getInstance(context).putObject(UserManager.this, SP_KEY_USER, new Gson().toJson(user));
     }
 

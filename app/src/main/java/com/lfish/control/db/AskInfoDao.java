@@ -1,6 +1,8 @@
 package com.lfish.control.db;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.j256.ormlite.dao.Dao;
 import com.lfish.control.db.dao.AskInfo;
 import java.sql.SQLException;
@@ -10,13 +12,15 @@ import java.util.List;
  * Created by shenmegui on 2017/7/5.
  */
 public class AskInfoDao {
-    private Dao<AskInfo,String> askInfoDaos;
+    private Dao askInfoDaos;
 
     public AskInfoDao(Context context) {
         try {
-            askInfoDaos = DbManager.getHelper(context).getDao(AskInfo.class);
+            DbManager helper = DbManager.getHelper(context);
+            askInfoDaos = helper.getDao(AskInfo.class);
         } catch (SQLException e) {
             e.printStackTrace();
+            Log.i("SQL",e.toString());
         }
     }
 

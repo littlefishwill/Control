@@ -11,6 +11,8 @@ import android.view.animation.Animation;
 import com.labo.kaji.fragmentanimations.CubeAnimation;
 import com.labo.kaji.fragmentanimations.MoveAnimation;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by shenmegui on 2016/7/1.
  */

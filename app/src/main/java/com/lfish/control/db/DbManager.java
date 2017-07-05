@@ -2,6 +2,7 @@ package com.lfish.control.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
  * Created by SuZhiwei on 2016/7/2.
  */
 public class DbManager extends OrmLiteSqliteOpenHelper {
-    private static final String TABLE_NAME = "control";
+    private static final String TABLE_NAME = "control.db";
     private static DbManager instance;
 
     /**
@@ -24,23 +25,17 @@ public class DbManager extends OrmLiteSqliteOpenHelper {
      * @param context
      * @return
      */
-    public static synchronized DbManager getHelper(Context context)
+    public static  DbManager getHelper(Context context)
     {
-        context = context.getApplicationContext();
-        if (instance == null)
-        {
-            synchronized (DbManager.class)
-            {
-                if (instance == null)
+                if (instance == null) {
                     instance = new DbManager(context);
-            }
-        }
+                }
 
         return instance;
     }
 
     private DbManager(Context context) {
-        super(context, TABLE_NAME, null,0);
+        super(context, TABLE_NAME, null,1);
     }
 
     @Override
@@ -51,6 +46,7 @@ public class DbManager extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, AskInfo.class);
         } catch (SQLException e)
         {
+            Log.i("SQL",e.toString());
             e.printStackTrace();
         }
     }

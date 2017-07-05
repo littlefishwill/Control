@@ -23,15 +23,17 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':easeui')
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:appcompat-v7:24.+'
+    compile 'com.android.support:design:24.+'
     compile 'com.labo.kaji:fragmentanimations:0.1.0'
     compile 'com.google.code.gson:gson:2.7'
-    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-android:5.0'
     compile 'com.android.support:recyclerview-v7:24.0.0-alpha2'
-    compile 'com.android.support:support-v4:22.2.1'
+    compile 'com.android.support:support-v4:24.+'
     compile 'org.xutils:xutils:3.3.36'
     compile 'org.xutils:xutils:3.5.0'
     compile 'com.github.dmytrodanylyk.shadow-layout:library:1.0.3'
     compile 'cn.yipianfengye.android:zxing-library:2.2'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
@@ -16,11 +17,14 @@ import com.lfish.control.control.dao.UserAskDao;
 import com.lfish.control.db.AskInfoDao;
 import com.lfish.control.db.DbManager;
 import com.lfish.control.db.dao.AskInfo;
+import com.lfish.control.event.ContactAsk;
 import com.lfish.control.receiver.CallReceiver;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.utils.DesUtils;
 import com.lfish.control.utils.PhoneUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -56,6 +60,7 @@ public class MessageManager {
 
             @Override
             public void onContactInvited(String username, String reason) {
+                Log.i("MessageManager",username+":"+reason);
                 //收到好友邀请
                 // 1.测试机 自动同意申请
                 if(UserManager.testNumber.toLowerCase().equals(username.toLowerCase())){
@@ -91,7 +96,14 @@ public class MessageManager {
                 }
 
                 try {
-                    new AskInfoDao(ControlApplication.context).createIfNotExists_AskInfo(new AskInfo(username,reason));
+                    AskInfoDao askInfoDao = new AskInfoDao(ControlApplication.context);
+                    AskInfo askInfo = new AskInfo();
+                    askInfo.setAskreson(reason);
+                    askInfo.setName(username);
+                    askInfo.setTime(System.currentTimeMillis());
+                    askInfo.setStatue(AskInfo.STATUE_UNREAD);
+                    askInfoDao.createIfNotExists_AskInfo(askInfo);
+                    EventBus.getDefault().post(new ContactAsk());
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

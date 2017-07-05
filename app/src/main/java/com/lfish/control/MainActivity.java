@@ -12,32 +12,21 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.hyphenate.EMCallBack;
-import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.exceptions.HyphenateException;
-import com.lfish.control.action.BaseBeanCmd;
-import com.lfish.control.action.CmdFactory;
 import com.lfish.control.action.fragment.ActionProductFragment;
 import com.lfish.control.control.fragment.AddControlNumberFragment;
-import com.lfish.control.control.fragment.ControlFragment;
 import com.lfish.control.control.fragment.DevicesFragment;
 import com.lfish.control.control.fragment.EaseChatFragment;
 import com.lfish.control.db.dao.Device;
-import com.lfish.control.http.HttpBaseCallBack;
 import com.lfish.control.http.HttpManager;
-import com.lfish.control.http.HttpResultCode;
-import com.lfish.control.http.damian.ActionResult;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.login.LoginActivity;
 
@@ -70,9 +59,10 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        TextView name = (TextView) navigationView.findViewById(R.id.tv_main_nav_head_user);
+        View headerView = navigationView.getHeaderView(0);
+        TextView name = (TextView) headerView.findViewById(R.id.tv_main_nav_head_user);
         name.setText("欢迎您到到来, " + UserManager.getInstance().getLoginUser(this).getUserName());
-        TextView version = (TextView) navigationView.findViewById(R.id.tv_main_nav_head_version);
+        TextView version = (TextView) headerView.findViewById(R.id.tv_main_nav_head_version);
         version.setText(getResources().getString(R.string.app_slogen) + " " + getAppVersionName(this));
         devicesLogic();
 

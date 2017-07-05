@@ -17,32 +17,76 @@
         <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--<View-->
+                    <!--android:layout_width="match_parent" android:layout_centerVertical="true"-->
+                    <!--android:layout_height="1px" android:background="@color/button_normal_bg"></View>-->
+
+                <TextView
+                    android:layout_centerInParent="true" android:paddingLeft="10dip" android:paddingRight="10dip"
+                    android:layout_width="wrap_content" android:textColor="@color/colorhint" android:text="@string/add_enter_des"
+                    android:layout_height="wrap_content" android:textSize="12sp" android:background="@color/activity_bg" />
+
+            </RelativeLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent" android:layout_marginTop="15dip"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="@string/child_number"
+                <AutoCompleteTextView android:id="@+id/atv_enter_number" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/child_number"
+                android:inputType="textPhonetic" android:maxLines="1"
+                android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent" android:layout_marginTop="5dip"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView android:id="@+id/atv_enter_resaon" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/ask_resaon"
                     android:inputType="textPhonetic" android:maxLines="1"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+            <Button android:id="@+id/btn_number_search" style="?android:textAppearanceSmall"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:text="@string/add_enter_search"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_marginTop="20dip"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText android:id="@+id/password" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="@string/child_password"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified" android:inputType="textPassword"
-                    android:maxLines="1" android:singleLine="true" />
+                <TextView
+                    android:layout_centerInParent="true" android:paddingLeft="10dip" android:paddingRight="10dip"
+                    android:layout_width="wrap_content" android:textColor="@color/colorhint" android:text="@string/add_qrcode_des"
+                    android:layout_height="wrap_content" android:textSize="12sp" android:background="@color/activity_bg" />
+            </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_marginTop="5dip"
+                    android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="2">
+                    <Button android:id="@+id/btn_qrcode_search_usephoto"
+                        style="?android:textAppearanceSmall"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp" android:text="@string/add_qrcode_search_usephoto"
+                        android:textStyle="bold" />
+                    <Button android:id="@+id/btn_qrcode_search"
+                        style="?android:textAppearanceSmall"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp" android:text="@string/add_qrcode_search"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            </android.support.design.widget.TextInputLayout>
 
-            <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" android:text="@string/child_register"
-                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

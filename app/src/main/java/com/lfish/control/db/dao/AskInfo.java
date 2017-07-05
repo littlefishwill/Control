@@ -13,27 +13,17 @@ public class AskInfo {
     public static final int STATUE_AGREE = 2;
     public static final int STATUE_DISAGREE = 3;
 
-
-    public AskInfo(String name, String reson) {
-        this.name = name;
-        this.reson = reson;
-        this.time = System.currentTimeMillis();
-        this.statue = STATUE_UNREAD;
-    }
-
-
     @DatabaseField(id = true)
     private String name;
 
     @DatabaseField
-    private String reson;
+    private String askreson;
 
     @DatabaseField
     private long time;
 
     @DatabaseField
     private int statue;
-
 
     public String getName() {
         return name;
@@ -43,12 +33,12 @@ public class AskInfo {
         this.name = name;
     }
 
-    public String getReson() {
-        return reson;
+    public String getAskreson() {
+        return askreson;
     }
 
-    public void setReson(String reson) {
-        this.reson = reson;
+    public void setAskreson(String askreson) {
+        this.askreson = askreson;
     }
 
     public long getTime() {
@@ -66,4 +56,6 @@ public class AskInfo {
     public void setStatue(int statue) {
         this.statue = statue;
     }
+
+
 }

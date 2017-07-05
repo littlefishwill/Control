@@ -12,6 +12,8 @@ import android.view.View;
 
 import com.lfish.control.user.UserManager;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by SuZhiwei on 2016/7/2.
  */

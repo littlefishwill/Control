@@ -15,7 +15,15 @@
 
     <string name="ask_list">申请列表</string>
     <string name="control_list">主控列表</string>
+    <string name="add_enter_search">申请添加</string>
+    <string name="add_enter_des">(输入被控账号,发送控制请求,需对方同意)</string>
+    <string name="add_qrcode_des">(扫描被控账号二维码，可直接控制被控账号)</string>
+    <string name="ask_resaon">请求备注</string>
 
+    <string name="add_qrcode_search">二维码扫描</string>
+    <string name="add_qrcode_search_usephoto">二维码图片扫描</string>
+
+    <string name="add_qrcode_search_alert_title">申请控制提示</string>
 
     <string name="app_register_waring">点击上面的“注册”按钮，即表示你同意 《诡计管家隐私政策》 </string>
     <string name="device_testnumber_nick">诡计管家功能体验</string>
@@ -49,7 +57,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <!-- Strings related to fragment addchildcontrol -->
-    <string name="child_number">被监控账号（control username）</string>
+    <string name="child_number">被监控账号</string>
     <string name="child_password">被监控账号密码（control password）</string>
     <string name="child_register">确认并注册（regist）</string>
 

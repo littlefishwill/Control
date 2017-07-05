@@ -14,13 +14,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.lfish.control.BaseActivity;
 import com.lfish.control.Config;
 import com.lfish.control.R;
 import com.lfish.control.control.dao.UserAskDao;
+import com.lfish.control.db.AskInfoDao;
+import com.lfish.control.db.dao.AskInfo;
+import com.lfish.control.event.ContactAsk;
 import com.lfish.control.http.HttpManager;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
@@ -29,13 +34,20 @@ import com.lfish.control.utils.DesUtils;
 import com.lfish.control.utils.PhoneUtils;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  * Created by SuZhiwei on 2016/9/10.
  */
 public class ChildShowActivity extends BaseActivity {
     private Button exit;
     private ImageView qrCodeImage;
-    private TextView tvloginName;
+    private TextView tvloginName,tvUnReadAsk;
     private LinearLayout askList,controlList,activityBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +60,55 @@ public class ChildShowActivity extends BaseActivity {
         }
         qrCodeImage = (ImageView) findViewById(R.id.iv_csa_zcode);
         tvloginName = (TextView) findViewById(R.id.tv_login_name);
+        tvUnReadAsk = (TextView) findViewById(R.id.tv_unread_ask);
         exit = (Button) findViewById(R.id.btn_childshow_exit);
 
         activityBtn = (LinearLayout) findViewById(R.id.ll_childshow_action);
 
         qrCodeLogic();
+        askListLogic();
         exitLogic();
 
         //活动逻辑
         activityLogic();
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ContactAsk event) {
+        try {
+            if(tvUnReadAsk==null){
+                return;
+            }
+            List<AskInfo> askInfos = new AskInfoDao(this).querForStatue(AskInfo.STATUE_UNREAD);
+
+            if(askInfos.size()<1){
+                tvUnReadAsk.setVisibility(View.GONE);
+            }else{
+                tvUnReadAsk.setText(askInfos.size()+"");
+                tvUnReadAsk.setVisibility(View.VISIBLE);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void askListLogic() {
+        onMessageEvent(null);
     }
 
     private void activityLogic() {
