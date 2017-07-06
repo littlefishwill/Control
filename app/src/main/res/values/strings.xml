@@ -13,6 +13,9 @@
     <string name="title_activity_unlockaction">解锁功能</string>
     <string name="title_activity_guanfang">官方活动</string>
 
+    <string name="title_activity_ask_request">申请控制列表</string>
+    <string name="title_activity_controldevice_list">控制端列表</string>
+
     <string name="ask_list">申请列表</string>
     <string name="control_list">主控列表</string>
     <string name="add_enter_search">申请添加</string>
@@ -24,6 +27,8 @@
     <string name="add_qrcode_search_usephoto">二维码图片扫描</string>
 
     <string name="add_qrcode_search_alert_title">申请控制提示</string>
+
+    <string name="add_ask_request_caozuo_alert_title">处理提示</string>
 
     <string name="app_register_waring">点击上面的“注册”按钮，即表示你同意 《诡计管家隐私政策》 </string>
     <string name="device_testnumber_nick">诡计管家功能体验</string>

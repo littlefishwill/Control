@@ -67,6 +67,16 @@
             android:label="@string/title_activity_unlockaction" android:screenOrientation="portrait" >
         </activity>
 
+        <activity
+            android:name=".child.ChildAskRequestActivity"
+            android:label="@string/title_activity_ask_request" >
+        </activity>
+
+        <activity
+            android:name=".child.ChildControlDeviceActivity"
+            android:label="@string/title_activity_controldevice_list" >
+        </activity>
+
         <!-- 设置环信应用的AppKey -->
         <meta-data
             android:name="EASEMOB_APPKEY"

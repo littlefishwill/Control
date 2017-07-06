@@ -64,14 +64,26 @@ public class ChildShowActivity extends BaseActivity {
         exit = (Button) findViewById(R.id.btn_childshow_exit);
 
         activityBtn = (LinearLayout) findViewById(R.id.ll_childshow_action);
+        askList = (LinearLayout) findViewById(R.id.ll_childshow_asklist);
+        controlList = (LinearLayout) findViewById(R.id.ll_childshow_control_list);
 
         qrCodeLogic();
         askListLogic();
+        controlListLogic();
         exitLogic();
 
         //活动逻辑
         activityLogic();
 
+    }
+
+    private void controlListLogic() {
+        controlList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open(ChildControlDeviceActivity.class);
+            }
+        });
     }
 
     @Override
@@ -109,6 +121,12 @@ public class ChildShowActivity extends BaseActivity {
 
     private void askListLogic() {
         onMessageEvent(null);
+        askList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open(ChildAskRequestActivity.class);
+            }
+        });
     }
 
     private void activityLogic() {
