@@ -21,7 +21,9 @@ import com.lfish.control.user.UserManager;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.lang.reflect.Array;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -47,8 +49,14 @@ public class ChildControlDeviceActivity extends BaseActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         askRequestView.setLayoutManager(layoutManager);
 
-        askListLogic();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        askListLogic();
     }
 
     public void askListLogic(){
@@ -79,12 +87,19 @@ public class ChildControlDeviceActivity extends BaseActivity {
                             @Override
                             public void onAgreeClick(int pos, String name) {
                                 try {
+                                    //删除请求列表
+                                    AskInfo askInfo = new AskInfo();
+                                    askInfo.setName(name);
+                                    new AskInfoDao(ChildControlDeviceActivity.this).delect(askInfo);
                                     EMClient.getInstance().contactManager().declineInvitation(name);
                                     MaterialDialog dialog = new MaterialDialog.Builder(ChildControlDeviceActivity.this)
                                             .title(R.string.add_ask_request_caozuo_alert_title)
                                             .content("已删除"+name+".")
                                             .positiveText(R.string.agree)
                                             .show();
+                                    childControlDeviceAdapter.getDevices().remove(pos);
+                                    childControlDeviceAdapter.notifyDataSetChanged();
+
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -94,14 +109,10 @@ public class ChildControlDeviceActivity extends BaseActivity {
                     }
                 }.execute();
         }else{
-                try {
-                    childControlDeviceAdapter.setAskInfos(EMClient.getInstance().contactManager().getAllContactsFromServer());
-                } catch (HyphenateException e) {
-                    e.printStackTrace();
-                }
-                childControlDeviceAdapter.notifyDataSetChanged();
+
         }
     }
+
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {

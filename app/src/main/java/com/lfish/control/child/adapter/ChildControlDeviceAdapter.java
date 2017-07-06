@@ -11,6 +11,7 @@ import com.lfish.control.R;
 import com.lfish.control.db.dao.AskInfo;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,11 @@ public class ChildControlDeviceAdapter extends RecyclerView.Adapter<ChildControl
     private List<String> devices;
     private Context context;
     public ChildControlDeviceAdapter(List<String> devices, Context context) {
-        this.devices = devices;
+        if(devices==null){
+            this.devices = new ArrayList<>();
+        }else {
+            this.devices = devices;
+        }
         this.context = context;
     }
 
@@ -90,6 +95,13 @@ public class ChildControlDeviceAdapter extends RecyclerView.Adapter<ChildControl
         void onAgreeClick(int pos, String name);
     }
 
+    public List<String> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<String> devices) {
+        this.devices = devices;
+    }
 
     public void setAskInfos(List<String> devices) {
         this.devices = devices;

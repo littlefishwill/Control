@@ -51,13 +51,16 @@ public class AskRequestAdapter   extends RecyclerView.Adapter<AskRequestAdapter.
             case AskInfo.STATUE_AGREE:
                 holder.agree.setText("已同意");
                 holder.agree.setClickable(false);
+                holder.agree.setEnabled(false);
                 break;
             case AskInfo.STATUE_UNREAD:
                 holder.agree.setText("同意");
+                holder.agree.setEnabled(true);
                 holder.agree.setClickable(true);
                 break;
             case AskInfo.STATUE_ASK:
                 holder.agree.setText("同意");
+                holder.agree.setEnabled(true);
                 holder.agree.setClickable(true);
                 break;
         }

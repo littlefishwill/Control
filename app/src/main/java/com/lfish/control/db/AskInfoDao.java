@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.lfish.control.db.dao.AskInfo;
 import java.sql.SQLException;
 import java.util.List;
@@ -38,11 +39,17 @@ public class AskInfoDao {
 
     public List<AskInfo> querForStatue(int statue) throws SQLException {
 
-        return askInfoDaos.queryForEq("statue",statue);
+        return askInfoDaos.queryForEq("statue", statue);
+    }
+
+    public void delect(AskInfo askInfo) throws SQLException {
+        askInfoDaos.delete(askInfo);
     }
 
     public void updateAllStatue(int statueFrom,int statueTo) throws SQLException {
-            askInfoDaos.updateBuilder().updateColumnValue("statue",statueTo).where().eq("statue",statueFrom);
+        UpdateBuilder updateBuilder = askInfoDaos.updateBuilder();
+        updateBuilder.updateColumnValue("statue", statueTo).where().eq("statue",statueFrom);
+        updateBuilder.update();
     }
 
 }

@@ -53,8 +53,14 @@ public class ChildAskRequestActivity extends BaseActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         askRequestView.setLayoutManager(layoutManager);
 
-        askListLogic();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        askListLogic();
     }
 
     public void askListLogic(){
@@ -78,6 +84,7 @@ public class ChildAskRequestActivity extends BaseActivity {
                                     .content("已同意"+askInfo.getName()+"的请求.")
                                     .positiveText(R.string.agree)
                                     .show();
+                            askRequestAdapter.notifyDataSetChanged();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

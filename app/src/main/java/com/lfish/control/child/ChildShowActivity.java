@@ -68,13 +68,18 @@ public class ChildShowActivity extends BaseActivity {
         controlList = (LinearLayout) findViewById(R.id.ll_childshow_control_list);
 
         qrCodeLogic();
-        askListLogic();
+
         controlListLogic();
         exitLogic();
 
         //活动逻辑
         activityLogic();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        askListLogic();
     }
 
     private void controlListLogic() {
