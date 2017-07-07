@@ -5,30 +5,34 @@
 
     <RelativeLayout
         android:layout_marginTop="10dip"
-        android:layout_width="match_parent" android:background="@drawable/shape_item_askrequest_bg"
-        android:layout_height="70dip" android:clickable="true">
+        android:layout_width="match_parent"
+        android:layout_height="65dip" android:clickable="true">
         <View android:id="@+id/v_askrequest_contain"
             android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
             android:layout_height="match_parent" android:clickable="false"/>
 
+        <TextView
+            android:id="@+id/tv_askrequest_firstname" android:padding="0dip" android:textStyle="bold" android:includeFontPadding="false"
+            android:layout_width="40dp"  android:textColor="@color/btn_white_normal" android:text="1" android:gravity="center" android:textSize="30sp"
+            android:layout_height="40dp" android:background="#FF1B4C"  android:layout_centerVertical="true"  />
 
         <LinearLayout  android:layout_marginRight="20dip"
-            android:layout_width="match_parent"  android:gravity="center_vertical"
-            android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip" >
+            android:layout_width="match_parent"  android:gravity="" android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dip" >
 
             <TextView android:id="@+id/tv_askrequest_name" android:padding="0dip"
                 android:layout_width="wrap_content" android:textSize="20sp" android:textColor="@color/colorhint"
                 android:layout_height="wrap_content" android:text="name" android:layout_marginLeft="20dip" />
 
             <TextView android:id="@+id/tv_askrequest_time" android:padding="0dip"
-                android:layout_width="wrap_content" android:textSize="13sp"  android:textColor="@color/colorhint"
+                android:layout_width="wrap_content" android:textSize="12sp"  android:textColor="@color/colorhint"
                 android:layout_height="wrap_content" android:text="" android:layout_marginLeft="20dip" />
 
         </LinearLayout>
 
-        <TextView android:id="@+id/tv_askrequest_reason" android:padding="0dip"  android:layout_marginTop="35dip"
+        <TextView android:id="@+id/tv_askrequest_reason" android:padding="0dip"  android:layout_marginTop="40dip"
             android:layout_width="match_parent" android:textSize="13sp"  android:textColor="@color/colorhint" android:layout_marginRight="80dp"
-            android:layout_height="wrap_content" android:text="" android:layout_marginLeft="20dip" android:maxLines="2" />
+            android:layout_height="wrap_content" android:text="" android:layout_marginLeft="60dip" android:maxLines="2" />
 
         <Button
             android:id="@+id/btn_askrequest_agree"
@@ -36,6 +40,12 @@
             android:layout_width="50dp" android:layout_marginBottom="5dip"
             android:layout_height="30dp" android:layout_marginRight="5dip" android:text="@string/agree" />
 
+        <View
+            android:layout_width="match_parent" android:background="@color/button_normal_bg"
+            android:layout_height="1px" android:layout_alignParentBottom="true"></View>
     </RelativeLayout>
+
+
+
 
 </RelativeLayout>

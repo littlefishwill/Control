@@ -75,9 +75,8 @@ public class MessageManager {
                 //2. 扫码申请的直接通过请求
                 if(reason.startsWith(Config.QRCODE_RESON_START_TAG) && reason.length()>2){
                     String substring = reason.substring(2, reason.length());
-                    User loginUser = UserManager.getInstance().getLoginUser(ControlApplication.context);
                     try {
-                        DesUtils desUtils = new DesUtils(loginUser.getPassWord());
+                        DesUtils desUtils = new DesUtils();
                         String decrypt = desUtils.decrypt(substring);
                         UserAskDao userAskDao = UserAskDao.parserFormString(decrypt);
                         if(userAskDao!=null){

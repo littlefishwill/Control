@@ -1,21 +1,27 @@
 package com.lfish.control.child;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
@@ -31,6 +37,7 @@ import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
 import com.lfish.control.utils.DesUtils;
+import com.lfish.control.utils.Md5;
 import com.lfish.control.utils.PhoneUtils;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -48,7 +55,8 @@ public class ChildShowActivity extends BaseActivity {
     private Button exit;
     private ImageView qrCodeImage;
     private TextView tvloginName,tvUnReadAsk;
-    private LinearLayout askList,controlList,activityBtn;
+    private View askList,controlList,activityBtn,yinSi;
+    private MaterialDialog enterPassWordDialog,exitDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +71,10 @@ public class ChildShowActivity extends BaseActivity {
         tvUnReadAsk = (TextView) findViewById(R.id.tv_unread_ask);
         exit = (Button) findViewById(R.id.btn_childshow_exit);
 
-        activityBtn = (LinearLayout) findViewById(R.id.ll_childshow_action);
-        askList = (LinearLayout) findViewById(R.id.ll_childshow_asklist);
-        controlList = (LinearLayout) findViewById(R.id.ll_childshow_control_list);
+        activityBtn =  findViewById(R.id.ll_childshow_action);
+        askList = findViewById(R.id.ll_childshow_asklist);
+        controlList = findViewById(R.id.ll_childshow_control_list);
+        yinSi = findViewById(R.id.ll_childshow_yinsi);
 
         qrCodeLogic();
 
@@ -74,6 +83,17 @@ public class ChildShowActivity extends BaseActivity {
 
         //活动逻辑
         activityLogic();
+
+        yinSiLogic();
+    }
+
+    private void yinSiLogic() {
+        yinSi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAppDetailSettingIntent(ChildShowActivity.this);
+            }
+        });
     }
 
     @Override
@@ -86,7 +106,35 @@ public class ChildShowActivity extends BaseActivity {
         controlList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open(ChildControlDeviceActivity.class);
+                 enterPassWordDialog = new MaterialDialog.Builder(ChildShowActivity.this)
+                        .title(R.string.ask_need_password_tilte)
+                        .customView(R.layout.dialog_enter_password, true)
+                        .positiveText(R.string.dialog_makesure)
+                        .negativeText(R.string.dialog_cancle)
+                        .autoDismiss(false)
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                View view = dialog.getView();
+                                AutoCompleteTextView pass = (AutoCompleteTextView) view.findViewById(R.id.atv_dialog_pass);
+                                String passWord = UserManager.getInstance().getLoginUser(ChildShowActivity.this).getPassWord();
+                                if (pass.getText().toString().length() < 1) {
+                                    pass.setError(getResources().getString(R.string.error_field_required));
+                                } else if (passWord.equals(Md5.GET_32(pass.getText().toString().toLowerCase()))) {
+                                    open(ChildControlDeviceActivity.class);
+                                    enterPassWordDialog.dismiss();
+                                } else {
+                                    pass.setError(getResources().getString(R.string.error_field_password));
+                                }
+                            }
+                        })
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                enterPassWordDialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         });
     }
@@ -157,12 +205,12 @@ public class ChildShowActivity extends BaseActivity {
                 //加密
                 User loginUser = UserManager.getInstance().getLoginUser(ChildShowActivity.this);
                 loginName = loginUser.getUserName();
-                String passWord = loginUser.getPassWord();
                 String imei= PhoneUtils.getInstance().getImei(ChildShowActivity.this);
                 UserAskDao userAskDao = new UserAskDao(loginName, imei, System.currentTimeMillis());
                 try {
-                    DesUtils desUtils = new DesUtils(passWord);
+                    DesUtils desUtils = new DesUtils();
                     String encrypt = desUtils.encrypt(userAskDao.toString());
+                    Log.i("PassCode",encrypt);
                     mBitmap = CodeUtils.createImage(encrypt, 400, 400, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -188,27 +236,56 @@ public class ChildShowActivity extends BaseActivity {
     }
 
     private void exitLogic() {
+
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EMClient.getInstance().logout(true, new EMCallBack() {
-                    @Override
-                    public void onSuccess() {
-                        UserManager.getInstance().loginOut(ChildShowActivity.this);
-                        open(LoginActivity.class);
-                        finish();
-                    }
+                exitDialog=  new MaterialDialog.Builder(ChildShowActivity.this)
+                        .title(R.string.ask_need_password_tilte)
+                        .customView(R.layout.dialog_enter_password, true)
+                        .positiveText(R.string.dialog_makesure)
+                        .negativeText(R.string.dialog_cancle)
+                        .autoDismiss(false)
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                View view = dialog.getView();
+                                AutoCompleteTextView pass = (AutoCompleteTextView) view.findViewById(R.id.atv_dialog_pass);
+                                String passWord = UserManager.getInstance().getLoginUser(ChildShowActivity.this).getPassWord();
+                                if (pass.getText().toString().length() < 1) {
+                                    pass.setError(getResources().getString(R.string.error_field_required));
+                                } else if (passWord.equals(Md5.GET_32(pass.getText().toString().toLowerCase()))) {
+                                    EMClient.getInstance().logout(true, new EMCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            UserManager.getInstance().loginOut(ChildShowActivity.this);
+                                            open(LoginActivity.class);
+                                            finish();
+                                        }
 
-                    @Override
-                    public void onError(int i, String s) {
+                                        @Override
+                                        public void onError(int i, String s) {
 
-                    }
+                                        }
 
-                    @Override
-                    public void onProgress(int i, String s) {
+                                        @Override
+                                        public void onProgress(int i, String s) {
 
-                    }
-                });
+                                        }
+                                    });
+                                    exitDialog.dismiss();
+                                } else {
+                                    pass.setError(getResources().getString(R.string.error_field_password));
+                                }
+                            }
+                        })
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                exitDialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         });
     }
@@ -221,6 +298,26 @@ public class ChildShowActivity extends BaseActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 跳转到权限设置界面
+     */
+    /**
+     * 跳转到权限设置界面
+     */
+    private void getAppDetailSettingIntent(Context context){
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if(Build.VERSION.SDK_INT >= 9){
+            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.fromParts("package", getPackageName(), null));
+        } else if(Build.VERSION.SDK_INT <= 8){
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setClassName("com.android.settings","com.android.settings.InstalledAppDetails");
+            intent.putExtra("com.android.settings.ApplicationPkgName", getPackageName());
+        }
+        startActivity(intent);
     }
 
 }

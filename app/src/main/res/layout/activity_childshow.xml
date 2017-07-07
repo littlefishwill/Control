@@ -49,8 +49,8 @@
                             android:layout_width="match_parent" android:gravity="center"
                             android:layout_height="match_parent" android:orientation="vertical">
                             <ImageView
-                                android:layout_width="40dip"
-                                android:layout_height="40dip" android:src="@drawable/ask_box" />
+                                android:layout_width="30dip"
+                                android:layout_height="30dip" android:src="@drawable/ask_box" />
                             <TextView
                                 android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/ask_list"
                                 android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
@@ -75,8 +75,8 @@
                         android:layout_width="match_parent"  android:gravity="center"
                         android:layout_height="match_parent" android:orientation="vertical">
                         <ImageView
-                            android:layout_width="40dip"
-                            android:layout_height="40dip" android:src="@drawable/control_ico" />
+                            android:layout_width="30dip"
+                            android:layout_height="30dip" android:src="@drawable/control_ico" />
                         <TextView
                             android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/control_list"
                             android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
@@ -94,12 +94,76 @@
                         android:layout_width="match_parent"  android:gravity="center"
                         android:layout_height="match_parent" android:orientation="vertical">
                         <ImageView
-                            android:layout_width="40dip"
-                            android:layout_height="40dip" android:src="@drawable/forum_ico" />
+                            android:layout_width="30dip"
+                            android:layout_height="30dip" android:src="@drawable/forum_ico" />
                         <TextView
                             android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/title_activity_guanfang"
                             android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
                     </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dip" android:weightSum="3" android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                        <View
+                            android:id="@+id/ll_childshow_yinsi"
+                            android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="match_parent" android:gravity="center"
+                            android:layout_height="match_parent" android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip" android:src="@drawable/childcontrol_premisson" />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/permission_up"
+                                android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent" android:visibility="invisible"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                        <View
+                            android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:id="@+id/ll_childshow_control_list2"
+                            android:layout_width="match_parent"  android:gravity="center"
+                            android:layout_height="match_parent" android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip" android:src="@drawable/control_ico" />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/control_list"
+                                android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"  android:visibility="invisible"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                        <View
+                            android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:id="@+id/ll_childshow_action2"
+                            android:layout_width="match_parent"  android:gravity="center"
+                            android:layout_height="match_parent" android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="30dip"
+                                android:layout_height="30dip" android:src="@drawable/forum_ico" />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_marginTop="15dip" android:text="@string/title_activity_guanfang"
+                                android:layout_height="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint" />
+                        </LinearLayout>
                     </RelativeLayout>
 
                 </LinearLayout>

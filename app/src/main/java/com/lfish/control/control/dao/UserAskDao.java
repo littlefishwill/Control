@@ -40,11 +40,11 @@ public class UserAskDao {
 
     @Override
     public String toString() {
-        return name+"|"+imei+"|"+time;
+        return name+"?"+imei+"?"+time;
     }
 
     public static UserAskDao parserFormString(String code){
-        String[] split = code.split("|");
+        String[] split = code.split("\\?");
         if(split.length==3){
             return new UserAskDao(split[0],split[1],Long.parseLong(split[2]));
         }
