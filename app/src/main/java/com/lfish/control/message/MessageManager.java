@@ -85,13 +85,13 @@ public class MessageManager {
                                 // 时间在有效期内
                                 if(System.currentTimeMillis()-userAskDao.getTime()<Config.CHILD_QRCODE_FINSHTIME){
                                     EMClient.getInstance().contactManager().acceptInvitation(username);
-                                    return;
                                 }
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    return;
                 }
 
                 try {
