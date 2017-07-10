@@ -270,7 +270,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     public void loginHX(){
         String phone = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        password = Md5.GET_32(password);
         UserManager.getInstance().login(this, phone, password, new LoginListener() {
             @Override
             public void onSuccess(User user) {

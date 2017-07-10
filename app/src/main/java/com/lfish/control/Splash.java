@@ -56,29 +56,12 @@ public class Splash extends BaseActivity {
 
     private void logic() {
         // 1 .激活设备管理器
-        if(!MdmUtils.getInstance(this).isActivity()){
-            MdmUtils.getInstance(this).tryGetMDM(this,REQUEST_PROVISION_MANAGED_PROFILE);
-            return;
-        }else {
-            skipLogic();
-        }
+        skipLogic();
+
     }
 
-    private int REQUEST_PROVISION_MANAGED_PROFILE = 0;
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == REQUEST_PROVISION_MANAGED_PROFILE) {
-            if(resultCode == Activity.RESULT_OK) {
-                Toast.makeText(getApplicationContext(), getString(R.string.activity_lockscreen_mdm_activity_success), Toast.LENGTH_SHORT).show();
-                skipLogic();
-            }else {
-                skipLogic();
-                Toast.makeText(getApplicationContext(), getString(R.string.activity_lockscreen_mdm_activity_failed), Toast.LENGTH_SHORT).show();
-            }
-            return;
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+
+
 
     private void skipLogic(){
         UserManager userManager = UserManager.getInstance();

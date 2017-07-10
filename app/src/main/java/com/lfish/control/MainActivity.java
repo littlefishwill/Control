@@ -13,23 +13,45 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
 import com.lfish.control.action.fragment.ActionProductFragment;
 import com.lfish.control.control.fragment.AddControlNumberFragment;
 import com.lfish.control.control.fragment.ContacUsFragment;
+import com.lfish.control.control.fragment.CustomMadeFragment;
 import com.lfish.control.control.fragment.DevicesFragment;
 import com.lfish.control.control.fragment.EaseChatFragment;
+import com.lfish.control.db.AskInfoDao;
+import com.lfish.control.db.dao.AskInfo;
 import com.lfish.control.db.dao.Device;
+import com.lfish.control.event.ContactAsk;
+import com.lfish.control.event.NeedReLogin;
+import com.lfish.control.http.HttpBaseCallBack;
 import com.lfish.control.http.HttpManager;
+import com.lfish.control.http.HttpResultCode;
+import com.lfish.control.http.damian.LoginResult;
 import com.lfish.control.user.UserManager;
+import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
+import com.lfish.control.utils.MyLog;
+import com.lfish.control.utils.PhoneUtils;
+import com.lfish.control.utils.Sputils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,6 +59,7 @@ public class MainActivity extends BaseActivity
     private DevicesFragment devicesFragment;
     private ActionProductFragment actionProductFragment;
     private ContacUsFragment contacUsFragment;
+    private CustomMadeFragment customMadeFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +156,7 @@ public class MainActivity extends BaseActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                setTitle("监控 '" + device.getNick()+"'");
+                setTitle("监控 '" + device.getNick() + "'");
                 addFragment(homeFragment);
             }
         });
@@ -196,7 +219,23 @@ public class MainActivity extends BaseActivity
                contacUsFragment = new ContacUsFragment();
            }
            addFragment(contacUsFragment);
-        } else if (id == R.id.nav_exit) {
+        } else if (id == R.id.nav_privateservice) {
+           setTitle("私人定制");
+           if(customMadeFragment==null){
+               customMadeFragment = new CustomMadeFragment();
+               customMadeFragment.setOnContactClikListener(new CustomMadeFragment.onContactClikListener() {
+                   @Override
+                   public void onClick() {
+                       setTitle("联系我们");
+                       if(contacUsFragment==null){
+                           contacUsFragment = new ContacUsFragment();
+                       }
+                       addFragment(contacUsFragment);
+                   }
+               });
+           }
+           addFragment(customMadeFragment);
+       } else if (id == R.id.nav_exit) {
            EMClient.getInstance().logout(true, new EMCallBack() {
                @Override
                public void onSuccess() {
@@ -250,6 +289,48 @@ public class MainActivity extends BaseActivity
         return false;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(NeedReLogin event) {
+
+        if(event.isNeedExit()){
+            finish();
+            open(LoginActivity.class);
+        }else{
+            User loginUser = UserManager.getInstance().getLoginUser(this);
+            Log.i("User",loginUser.getUserName()+":"+loginUser.getPassWord());
+            HttpManager.getInstance().login(loginUser.getUserName(), loginUser.getPassWord(), new HttpBaseCallBack<LoginResult>() {
+
+                @Override
+                public void onSuccess(LoginResult result) {
+                    LoginResult.LoginResultData data = result.getData();
+                    if (result.getCode() == HttpResultCode.SUCCESS) {
+                        //刷新功能列表
+                        Sputils.getInstance(ControlApplication.context).putObject(HttpManager.getInstance(),HttpManager.HTTP_TOKEN,data.getToken());
+                        Sputils.getInstance(ControlApplication.context).putObject(HttpManager.getInstance(),HttpManager.HTTP_UUID,data.getUuid());
+//                        Sputils.getInstance(ControlApplication.context).putObject(HttpManager.getInstance(), HttpManager.HTTP_USER, mEmailView.getText().toString());
+
+                        HttpManager.getInstance().getAndRefreshActionList();
+                    }else{
+                        Toast.makeText(MainActivity.this,"自动登录失败，请重新登录",Toast.LENGTH_LONG).show();
+                        finish();
+                        open(LoginActivity.class);
+                    }
+                }
+            });
+        }
+
+    }
 
 }

@@ -12,6 +12,7 @@ import com.lfish.control.config.HttpConfig;
 import com.lfish.control.internetwork.domain.LoginResponse;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.listener.LoginListener;
+import com.lfish.control.utils.Md5;
 import com.lfish.control.utils.Sputils;
 
 import org.xutils.common.Callback;
@@ -97,6 +98,7 @@ public class UserManager extends BaseManager {
         user.setUserName(userName);
         user.setPassWord(passWord);
         user.setHxId(userName);
+        passWord = Md5.GET_32(passWord);
         EMClient.getInstance().login(userName,passWord,new EMCallBack() {//回调
             @Override
             public void onSuccess() {

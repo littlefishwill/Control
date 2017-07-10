@@ -35,15 +35,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lfish.control.BaseActivity;
-import com.lfish.control.MainActivity;
 import com.lfish.control.R;
 import com.lfish.control.http.BaseResultData;
 import com.lfish.control.http.HttpBaseCallBack;
 import com.lfish.control.http.HttpManager;
 import com.lfish.control.http.HttpResultCode;
-import com.lfish.control.user.UserManager;
-import com.lfish.control.user.dao.User;
-import com.lfish.control.user.listener.LoginListener;
 import com.lfish.control.user.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -212,8 +208,8 @@ public class RegisterActivity extends BaseActivity implements LoaderCallbacks<Cu
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(phone)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+        } else if (!userLength(phone)) {
+            mEmailView.setError(getString(R.string.error_user_length));
             focusView = mEmailView;
             cancel = true;
         }
@@ -247,8 +243,13 @@ public class RegisterActivity extends BaseActivity implements LoaderCallbacks<Cu
 
     }
 
-    private boolean isEmailValid(String email) {
+    private boolean userLength(String email) {
         //TODO: Replace this with your own logic
+
+        if(email.trim().length()<6){
+            return false;
+        }
+
         return true;
     }
 

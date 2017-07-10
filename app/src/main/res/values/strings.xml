@@ -52,6 +52,7 @@
     <string name="prompt_password">密 码</string>
     <string name="action_sign_in">登 录</string>
     <string name="action_register_in">注 册</string>
+    <string name="error_user_length">用户名长度不得低于6位</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>

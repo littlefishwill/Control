@@ -10,13 +10,7 @@
 
         <force-lock />
 
-        <wipe-data />
-
         <expire-password />
-
-        <encrypted-storage />
-
-        <disable-camera />
         
         
         

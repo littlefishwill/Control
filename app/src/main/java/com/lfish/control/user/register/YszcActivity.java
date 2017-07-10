@@ -82,6 +82,15 @@ public class YszcActivity extends BaseActivity {
     }
 
 
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return false;
+    }
+
 
 
 

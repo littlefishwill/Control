@@ -1,5 +1,6 @@
 package com.lfish.control.child;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +29,7 @@ import com.hyphenate.chat.EMClient;
 import com.lfish.control.BaseActivity;
 import com.lfish.control.Config;
 import com.lfish.control.R;
+import com.lfish.control.action.actiontool.MdmUtils;
 import com.lfish.control.control.dao.UserAskDao;
 import com.lfish.control.db.AskInfoDao;
 import com.lfish.control.db.dao.AskInfo;
@@ -57,6 +59,7 @@ public class ChildShowActivity extends BaseActivity {
     private TextView tvloginName,tvUnReadAsk;
     private View askList,controlList,activityBtn,yinSi;
     private MaterialDialog enterPassWordDialog,exitDialog;
+    private int REQUEST_PROVISION_MANAGED_PROFILE = 110;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +88,28 @@ public class ChildShowActivity extends BaseActivity {
         activityLogic();
 
         yinSiLogic();
+
+        mdmLogic();
+    }
+
+    private void mdmLogic() {
+        if(!MdmUtils.getInstance(this).isActivity()){
+            MdmUtils.getInstance(this).tryGetMDM(this,REQUEST_PROVISION_MANAGED_PROFILE);
+            return;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_PROVISION_MANAGED_PROFILE) {
+            if(resultCode == Activity.RESULT_OK) {
+                Toast.makeText(getApplicationContext(), getString(R.string.activity_lockscreen_mdm_activity_success), Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(getApplicationContext(), getString(R.string.activity_lockscreen_mdm_activity_failed), Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void yinSiLogic() {

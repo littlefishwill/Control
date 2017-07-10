@@ -61,7 +61,6 @@ public class BlockScreenActivity extends BaseActivity implements View.OnClickLis
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish(); // back button
-                open(LoginActivity.class);
                 return true;
         }
         return super.onOptionsItemSelected(item);

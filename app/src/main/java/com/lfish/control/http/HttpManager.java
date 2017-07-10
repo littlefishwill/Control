@@ -7,10 +7,13 @@ import com.lfish.control.BaseManager;
 import com.lfish.control.ControlApplication;
 import com.lfish.control.action.BaseBeanCmd;
 import com.lfish.control.action.CmdFactory;
+import com.lfish.control.event.ContactAsk;
+import com.lfish.control.event.NeedReLogin;
 import com.lfish.control.http.damian.ActionResult;
 import com.lfish.control.utils.PhoneUtils;
 import com.lfish.control.utils.Sputils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
@@ -80,6 +83,10 @@ public class HttpManager  extends BaseManager{
     }
 
     /**
+     * 已经尝试重新登录过了
+     */
+    private  boolean isAutoLogon =false;
+    /**
      * 获取菜单
      */
     public void getAndRefreshActionList() {
@@ -120,8 +127,8 @@ public class HttpManager  extends BaseManager{
                     }
 
                 } else {
-                    Toast.makeText(ControlApplication.context, result.getMsg(), Toast.LENGTH_LONG).show();
-
+                    EventBus.getDefault().post(new NeedReLogin(isAutoLogon));
+                    isAutoLogon = true;
                 }
             }
         });
