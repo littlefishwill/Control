@@ -2,6 +2,8 @@ package com.lfish.control.action.activity;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +13,7 @@ import com.lfish.control.R;
 import com.lfish.control.action.CmdFactory;
 import com.lfish.control.action.cmddomian.LockScreenCmd;
 import com.lfish.control.action.cmdparams.LockScreenParams;
+import com.lfish.control.user.login.LoginActivity;
 
 /**
  * Created by SuZhiwei on 2016/8/21.
@@ -22,6 +25,14 @@ public class BlockScreenActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
         toChatUsername = getIntent().getStringExtra("user");
         setContentView(R.layout.activity_lockscreen);
         lockpass = (EditText) findViewById(R.id.lockpass);
@@ -43,5 +54,25 @@ public class BlockScreenActivity extends BaseActivity implements View.OnClickLis
                 CmdFactory.getInstance().SendCmd(LockScreenCmd.CMDNUMBER, toChatUsername,new LockScreenParams(false));
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish(); // back button
+                open(LoginActivity.class);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return false;
     }
 }

