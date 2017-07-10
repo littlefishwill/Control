@@ -309,7 +309,6 @@ public class MainActivity extends BaseActivity
             open(LoginActivity.class);
         }else{
             User loginUser = UserManager.getInstance().getLoginUser(this);
-            Log.i("User",loginUser.getUserName()+":"+loginUser.getPassWord());
             HttpManager.getInstance().login(loginUser.getUserName(), loginUser.getPassWord(), new HttpBaseCallBack<LoginResult>() {
 
                 @Override
