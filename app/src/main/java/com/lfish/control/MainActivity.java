@@ -23,6 +23,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
 import com.lfish.control.action.fragment.ActionProductFragment;
 import com.lfish.control.control.fragment.AddControlNumberFragment;
+import com.lfish.control.control.fragment.ContacUsFragment;
 import com.lfish.control.control.fragment.DevicesFragment;
 import com.lfish.control.control.fragment.EaseChatFragment;
 import com.lfish.control.db.dao.Device;
@@ -35,6 +36,7 @@ public class MainActivity extends BaseActivity
     private Fragment homeFragment,addControlNmuberFragment;
     private DevicesFragment devicesFragment;
     private ActionProductFragment actionProductFragment;
+    private ContacUsFragment contacUsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,7 +191,11 @@ public class MainActivity extends BaseActivity
             }
            addFragment(actionProductFragment);
         } else if (id == R.id.nav_talk) {
-
+           setTitle("联系我们");
+           if(contacUsFragment==null){
+               contacUsFragment = new ContacUsFragment();
+           }
+           addFragment(contacUsFragment);
         } else if (id == R.id.nav_exit) {
            EMClient.getInstance().logout(true, new EMCallBack() {
                @Override
