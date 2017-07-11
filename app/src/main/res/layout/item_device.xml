@@ -6,30 +6,39 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent" android:layout_margin="10dip" android:background="@drawable/shape_item_device_bg"
-        android:layout_height="100dip" android:clickable="true">
+        android:layout_width="match_parent" android:layout_margin="10dip"
+        android:layout_height="70dip" android:clickable="true">
     <View android:id="@+id/v_device_contain"
         android:layout_width="match_parent" android:background="?android:attr/selectableItemBackground"
         android:layout_height="match_parent" android:clickable="false"/>
 
-        <ImageView
-            android:layout_width="40dip" android:layout_centerVertical="true"
-            android:layout_height="40dip" android:src="@drawable/play_phone_ico"
-            android:clickable="false" android:id="@+id/iv_ico" android:layout_marginLeft="20sp" />
+        <TextView
+            android:layout_width="50dip" android:layout_centerVertical="true" android:textSize="20sp" android:gravity="center"
+            android:layout_height="50dip" android:background="@drawable/item_device_circle_bg" android:textColor="@color/colorhint"
+            android:clickable="false" android:id="@+id/iv_ico" android:layout_marginLeft="10sp" android:text="免" />
 
-        <LinearLayout android:layout_marginLeft="50dip" android:layout_marginRight="20dip"
+        <LinearLayout android:layout_marginLeft="55dip" android:layout_marginRight="20dip"
         android:layout_width="match_parent" android:layout_centerVertical="true" android:gravity="center_vertical"
         android:layout_height="wrap_content" android:orientation="vertical" >
 
         <TextView android:id="@+id/tv_name" android:padding="0dip"
-            android:layout_width="wrap_content" android:textSize="20sp" android:textColor="#2B2B2B"
-            android:layout_height="wrap_content" android:text="name" android:layout_marginLeft="20dip" />
-            <TextView android:id="@+id/tv_device_des" android:padding="0dip"
-                android:layout_width="wrap_content" android:textSize="13sp" android:textColor="#2B2B2B"
-                android:layout_height="wrap_content" android:text="name" android:layout_marginLeft="20dip" />
+            android:layout_width="wrap_content" android:textSize="15sp" android:textColor="@color/colorhint"
+            android:layout_height="wrap_content" android:text="name" android:layout_marginLeft="25dip" />
+
+            <TextView android:id="@+id/tv_device_des" android:padding="0dip" android:layout_marginTop="5dp"
+                android:layout_width="wrap_content" android:textSize="10sp" android:textColor="@color/colorchoose"
+                android:layout_height="wrap_content" android:text="name" android:layout_marginLeft="25dip" />
+
+
 
     </LinearLayout>
+        <ImageView
+            android:layout_width="15dip" android:layout_centerVertical="true" android:layout_alignParentRight="true" android:layout_marginRight="10dp"
+            android:layout_height="15dip" android:src="@drawable/item_deivce_enter" />
 
+        <View
+            android:layout_width="match_parent" android:layout_marginLeft="80dip" android:layout_marginRight="10dip"
+            android:layout_height="1px" android:background="#3C3F41" android:layout_alignParentBottom="true"></View>
 
     </RelativeLayout>
 </RelativeLayout>

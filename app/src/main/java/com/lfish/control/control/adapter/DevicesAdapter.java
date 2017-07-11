@@ -34,6 +34,7 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.ActionHo
     @Override
     public void onBindViewHolder(ActionHoder holder, final int position) {
         final Device device = actions.get(position);
+        holder.firstName.setText(device.getNick().substring(0,1).toUpperCase());
         holder.name.setText(device.getNick());
         holder.des.setText(device.getDes());
         holder.contain.setOnClickListener(new View.OnClickListener() {
@@ -52,13 +53,12 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.ActionHo
     }
 
     public class ActionHoder extends RecyclerView.ViewHolder{
-        private ImageView ico;
-        private TextView name,des;
+        private TextView name,des,firstName;
         private  View contain;
         public ActionHoder(View itemView) {
             super(itemView);
             contain = itemView.findViewById(R.id.v_device_contain);
-            ico = (ImageView) itemView.findViewById(R.id.iv_ico);
+            firstName = (TextView) itemView.findViewById(R.id.iv_ico);
             name = (TextView) itemView.findViewById(R.id.tv_name);
             des = (TextView) itemView.findViewById(R.id.tv_device_des);
         }
