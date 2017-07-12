@@ -255,12 +255,10 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                             MyLog.i("Login",data.getToken()+" ? "+data.getUuid()+" ? "+ PhoneUtils.getInstance().getImei(LoginActivity.this));
                         }
 
-
-
                     } else {
                         MyLog.i("Login-Fila",PhoneUtils.getInstance().getImei(ControlApplication.context));
                         showProgress(false);
-                        showError(mLoginFormView, result.getMsg());
+                        showError(mLoginFormView, "登录失败，请检查用户名或密码");
                     }
                 }
             });

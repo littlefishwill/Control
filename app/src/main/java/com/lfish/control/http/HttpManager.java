@@ -7,6 +7,7 @@ import com.lfish.control.BaseManager;
 import com.lfish.control.ControlApplication;
 import com.lfish.control.action.BaseBeanCmd;
 import com.lfish.control.action.CmdFactory;
+import com.lfish.control.event.ActionListRefresh;
 import com.lfish.control.event.ContactAsk;
 import com.lfish.control.event.NeedReLogin;
 import com.lfish.control.http.damian.ActionResult;
@@ -94,7 +95,6 @@ public class HttpManager  extends BaseManager{
             @Override
             public void onSuccess(ActionResult result) {
                 if (result.getCode() == HttpResultCode.SUCCESS) {
-                    Toast.makeText(ControlApplication.context, result.getData().size() + "", Toast.LENGTH_LONG).show();
 
                     for (final ActionResult.ActionResultBean actionResultBean : result.getData()) {
                         BaseBeanCmd cmd = new BaseBeanCmd() {
@@ -125,6 +125,11 @@ public class HttpManager  extends BaseManager{
                         cmd.setMenuIco(actionResultBean.getImgUrl());
                         CmdFactory.getInstance().addLockBean(cmd);
                     }
+
+                    isAutoLogon = false;
+                    Toast.makeText(ControlApplication.context, "获取功能列表成功", Toast.LENGTH_LONG).show();
+
+                    EventBus.getDefault().post(new ActionListRefresh());
 
                 } else {
                     EventBus.getDefault().post(new NeedReLogin(isAutoLogon));

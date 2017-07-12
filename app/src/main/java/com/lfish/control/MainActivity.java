@@ -39,6 +39,7 @@ import com.lfish.control.http.HttpBaseCallBack;
 import com.lfish.control.http.HttpManager;
 import com.lfish.control.http.HttpResultCode;
 import com.lfish.control.http.damian.LoginResult;
+import com.lfish.control.qrcode.QrCodeActivity;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
@@ -50,6 +51,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -177,7 +179,8 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
+        setIconsVisible(menu,true);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -188,11 +191,32 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_qrcode) {
+            open(QrCodeActivity.class);
+            return true;
+        }else if(id == R.id.action_refresh){
+            //刷新功能列表
+            HttpManager.getInstance().getAndRefreshActionList();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setIconsVisible(Menu menu, boolean flag) {
+        //判断menu是否为空
+        if(menu != null) {
+            try {
+                //如果不为空,就反射拿到menu的setOptionalIconsVisible方法
+                Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                //暴力访问该方法
+                method.setAccessible(true);
+                //调用该方法显示icon
+                method.invoke(menu, flag);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -305,8 +329,24 @@ public class MainActivity extends BaseActivity
     public void onMessageEvent(NeedReLogin event) {
 
         if(event.isNeedExit()){
-            finish();
-            open(LoginActivity.class);
+            EMClient.getInstance().logout(true, new EMCallBack() {
+                @Override
+                public void onSuccess() {
+                    UserManager.getInstance().loginOut(MainActivity.this);
+                    open(LoginActivity.class);
+                    finish();
+                }
+
+                @Override
+                public void onError(int i, String s) {
+
+                }
+
+                @Override
+                public void onProgress(int i, String s) {
+
+                }
+            });
         }else{
             User loginUser = UserManager.getInstance().getLoginUser(this);
             HttpManager.getInstance().login(loginUser.getUserName(), loginUser.getPassWord(), new HttpBaseCallBack<LoginResult>() {

@@ -127,6 +127,11 @@
             android:label="@string/activity_webqrpay_title" >
         </activity>
 
+        <activity
+            android:name=".qrcode.QrCodeActivity"
+            android:label="@string/activity_qrcode_title" >
+        </activity>
+
         <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" />
         <activity android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity" />
         <activity

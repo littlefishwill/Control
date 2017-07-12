@@ -18,6 +18,12 @@
     <string name="title_activity_ask_request">申请控制列表</string>
     <string name="title_activity_controldevice_list">控制端列表</string>
 
+
+    <string name="menu_qrcode">扫一扫</string>
+    <string name="menu_refresh_action">刷新功能列表</string>
+
+
+
     <string name="ask_list">申请列表</string>
     <string name="control_list">主控列表</string>
     <string name="add_enter_search">申请添加</string>
@@ -86,4 +92,6 @@
     <string name="activity_lockscreen_mdm_des">请您激活设备管理器，激活此功能后，可以进行锁屏控制。</string>
 
     <string name="activity_webqrpay_title">支付解锁</string>
+
+    <string name="activity_qrcode_title">扫一扫</string>
 </resources>
