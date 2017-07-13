@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
     protected EaseChatPrimaryMenuListener listener;
@@ -101,6 +102,11 @@ public abstract class EaseChatPrimaryMenuBase extends RelativeLayout{
          * toggle on/off extend menu
          */
         void onToggleExtendClicked();
+
+        /**
+         * toggle on/off extend menu
+         */
+        void onToggleExtendClicked(TextView tabDes);
         
         /**
          * toggle on/off emoji icon

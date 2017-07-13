@@ -8,9 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent" android:background="@color/activity_bg"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="match_parent" android:layout_marginTop="10dip">
 
     <com.hyphenate.easeui.widget.EaseChatExtendMenu
         android:id="@+id/extend_menu"

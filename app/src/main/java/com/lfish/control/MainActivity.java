@@ -13,7 +13,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,16 +23,13 @@ import android.widget.Toast;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
-import com.lfish.control.action.fragment.ActionProductFragment;
+import com.lfish.control.control.fragment.ActionProductFragment;
 import com.lfish.control.control.fragment.AddControlNumberFragment;
 import com.lfish.control.control.fragment.ContacUsFragment;
 import com.lfish.control.control.fragment.CustomMadeFragment;
 import com.lfish.control.control.fragment.DevicesFragment;
 import com.lfish.control.control.fragment.EaseChatFragment;
-import com.lfish.control.db.AskInfoDao;
-import com.lfish.control.db.dao.AskInfo;
 import com.lfish.control.db.dao.Device;
-import com.lfish.control.event.ContactAsk;
 import com.lfish.control.event.NeedReLogin;
 import com.lfish.control.http.HttpBaseCallBack;
 import com.lfish.control.http.HttpManager;
@@ -43,8 +39,6 @@ import com.lfish.control.qrcode.QrCodeActivity;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
-import com.lfish.control.utils.MyLog;
-import com.lfish.control.utils.PhoneUtils;
 import com.lfish.control.utils.Sputils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,8 +46,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Method;
-import java.sql.SQLException;
-import java.util.List;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,6 +54,7 @@ public class MainActivity extends BaseActivity
     private ActionProductFragment actionProductFragment;
     private ContacUsFragment contacUsFragment;
     private CustomMadeFragment customMadeFragment;
+    private int cacheId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,11 +116,13 @@ public class MainActivity extends BaseActivity
             @Override
             public void onChoose(Device device) {
                 toControlDevice(device);
+                cacheId = -1;
             }
 
             @Override
             public void onNeedCreateChildNumber() {
                 createChildNumber();
+                cacheId = -1;
             }
         });
         addFragment(devicesFragment);
@@ -224,7 +219,7 @@ public class MainActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        cacheId = id;
        if (id == R.id.nav_devices) {
             setTitle("可控设备");
             addFragment(devicesFragment);
@@ -307,7 +302,12 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(true);
+
+            if(cacheId == R.id.nav_devices) {
+                moveTaskToBack(true);
+            }else {
+                addFragment(devicesFragment);
+            }
             return true;
         }
         return false;

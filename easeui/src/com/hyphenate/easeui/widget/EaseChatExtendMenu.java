@@ -260,4 +260,11 @@ public class EaseChatExtendMenu extends GridView{
         }
 
     }
+
+    public void clear(){
+        if(itemModels!=null) {
+            itemModels.clear();
+        }
+        itemModels = new ArrayList<ChatMenuItemModel>();
+    }
 }

@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.domain.EaseEmojicon;
 import com.hyphenate.easeui.domain.EaseEmojiconGroupEntity;
@@ -142,6 +144,10 @@ public class EaseChatInputMenu extends LinearLayout {
     public void init(){
         init(null);
     }
+
+    public void refreshChatExtendMenu(){
+        chatExtendMenu.init();
+    }
     
     /**
      * set custom emojicon menu
@@ -190,9 +196,15 @@ public class EaseChatInputMenu extends LinearLayout {
     }
 
     /**
+     * 清空功能菜单
+     */
+    public void clearExtendMenu() {
+        chatExtendMenu.clear();
+    }
+
+    /**
      * register menu item
-     * 
-     * @param name
+     *
      *            resource id of item name
      * @param drawableRes
      *            background of item
@@ -224,6 +236,17 @@ public class EaseChatInputMenu extends LinearLayout {
 
             @Override
             public void onToggleExtendClicked() {
+                toggleMore();
+            }
+
+            @Override
+            public void onToggleExtendClicked(TextView tabDes) {
+                if (chatExtendMenuContainer.getVisibility() == View.GONE) {
+                    tabDes.setText("点击右侧按钮，可以关闭监控菜单");
+                }else{
+                    tabDes.setText("点击右侧按钮，可以呼出监控菜单");
+                }
+
                 toggleMore();
             }
 

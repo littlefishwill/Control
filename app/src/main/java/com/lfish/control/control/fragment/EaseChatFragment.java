@@ -73,8 +73,13 @@ import com.lfish.control.action.cmddomian.GetInstallAppsCmd;
 import com.lfish.control.action.cmddomian.LockScreenCmd;
 import com.lfish.control.action.cmddomian.VideoOnlineCmd;
 import com.lfish.control.control.AudioCallActivity;
+import com.lfish.control.event.ActionListRefresh;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.login.LoginActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.Iterator;
@@ -280,7 +285,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
      * register extend menu, item id need > 3 if you override this method and keep exist item
      */
     protected void registerExtendMenuItem(){
-
+        inputMenu.clearExtendMenu();
         Iterator<Map.Entry<Integer, Class>> iterator = CmdFactory.getInstance().getCmdSet().entrySet().iterator();
         while(iterator.hasNext()){
             BaseBeanCmd cmd = CmdFactory.getInstance().getCmdServer(iterator.next().getKey());
@@ -462,17 +467,6 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         if(chatType == EaseConstant.CHATTYPE_GROUP){
             EaseAtMessageHelper.get().removeAtMeGroup(toChatUsername);
         }
-    }
-    
-    @Override
-    public void onStop() {
-        super.onStop();
-        // unregister this event listener when this activity enters the
-        // background
-        EMClient.getInstance().chatManager().removeMessageListener(this);
-
-        // remove activity from foreground activity list
-        EaseUI.getInstance().popActivity(getActivity());
     }
 
     @Override
@@ -1110,5 +1104,31 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
          */
         EaseCustomChatRowProvider onSetCustomChatRowProvider();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        // unregister this event listener when this activity enters the
+        // background
+        EMClient.getInstance().chatManager().removeMessageListener(this);
+
+        // remove activity from foreground activity list
+        EaseUI.getInstance().popActivity(getActivity());
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ActionListRefresh event) {
+        registerExtendMenuItem();
+        inputMenu.refreshChatExtendMenu();
+    }
+
+
     
 }

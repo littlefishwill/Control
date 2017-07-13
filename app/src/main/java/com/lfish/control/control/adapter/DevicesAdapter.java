@@ -37,6 +37,11 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.ActionHo
         holder.firstName.setText(device.getNick().substring(0,1).toUpperCase());
         holder.name.setText(device.getNick());
         holder.des.setText(device.getDes());
+        if(device.getDes() ==null || device.getDes().trim().length()<1){
+            holder.des.setVisibility(View.GONE);
+        }else{
+            holder.des.setVisibility(View.VISIBLE);
+        }
         holder.contain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

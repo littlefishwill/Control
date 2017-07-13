@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hyphenate.easeui.R;
 
@@ -35,6 +36,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
     private RelativeLayout faceLayout;
     private Context context;
     private EaseVoiceRecorderView voiceRecorderView;
+    private TextView fabDes;
 
     public EaseChatPrimaryMenu(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -63,6 +65,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
         faceChecked = (ImageView) findViewById(R.id.iv_face_checked);
         faceLayout = (RelativeLayout) findViewById(R.id.rl_face);
         buttonMore = (FloatingActionButton) findViewById(R.id.fab);
+        fabDes = (TextView) findViewById(R.id.tv_fab_des);
         edittext_layout.setBackgroundResource(R.drawable.ease_input_bar_bg_normal);
         
         buttonSend.setOnClickListener(this);
@@ -178,7 +181,7 @@ public class EaseChatPrimaryMenu extends EaseChatPrimaryMenuBase implements OnCl
             buttonPressToSpeak.setVisibility(View.GONE);
             showNormalFaceImage();
             if(listener != null)
-                listener.onToggleExtendClicked();
+                listener.onToggleExtendClicked(fabDes);
         } else if (id == R.id.et_sendmessage) {
             edittext_layout.setBackgroundResource(R.drawable.ease_input_bar_bg_active);
             faceNormal.setVisibility(View.VISIBLE);

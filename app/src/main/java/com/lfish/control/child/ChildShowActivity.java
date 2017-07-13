@@ -145,7 +145,7 @@ public class ChildShowActivity extends BaseActivity {
                                 String passWord = UserManager.getInstance().getLoginUser(ChildShowActivity.this).getPassWord();
                                 if (pass.getText().toString().length() < 1) {
                                     pass.setError(getResources().getString(R.string.error_field_required));
-                                } else if (passWord.equals(Md5.GET_32(pass.getText().toString().toLowerCase()))) {
+                                } else if (passWord.equals(pass.getText().toString())) {
                                     open(ChildControlDeviceActivity.class);
                                     enterPassWordDialog.dismiss();
                                 } else {
@@ -279,7 +279,7 @@ public class ChildShowActivity extends BaseActivity {
                                 String passWord = UserManager.getInstance().getLoginUser(ChildShowActivity.this).getPassWord();
                                 if (pass.getText().toString().length() < 1) {
                                     pass.setError(getResources().getString(R.string.error_field_required));
-                                } else if (passWord.equals(Md5.GET_32(pass.getText().toString().toLowerCase()))) {
+                                } else if (passWord.equals(pass.getText().toString())) {
                                     EMClient.getInstance().logout(true, new EMCallBack() {
                                         @Override
                                         public void onSuccess() {
