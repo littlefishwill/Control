@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
@@ -40,7 +39,6 @@ import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
 import com.lfish.control.utils.Sputils;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -307,6 +305,7 @@ public class MainActivity extends BaseActivity
                 moveTaskToBack(true);
             }else {
                 addFragment(devicesFragment);
+                cacheId = R.id.nav_devices;
             }
             return true;
         }

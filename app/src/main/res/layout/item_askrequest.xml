@@ -37,8 +37,8 @@
         <Button
             android:id="@+id/btn_askrequest_agree"
             android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
-            android:layout_width="50dp" android:layout_marginBottom="5dip"
-            android:layout_height="30dp" android:layout_marginRight="5dip" android:text="@string/agree" />
+            android:layout_width="70dp" android:layout_marginBottom="5dip"
+            android:layout_height="40dp" android:layout_marginRight="5dip" android:text="@string/agree" />
 
         <View
             android:layout_width="match_parent" android:background="@color/button_normal_bg"

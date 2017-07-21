@@ -1,5 +1,7 @@
 package com.lfish.control.control.fragment;
 
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,12 +22,13 @@ import java.util.List;
 /**
  * Created by SuZhiwei on 2016/7/2.
  */
-public class DevicesFragment extends BaseFragment implements DevicesAdapter.OnItemClickListener, View.OnClickListener {
+public class DevicesFragment extends BaseFragment implements DevicesAdapter.OnItemClickListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView rcDevices;
     private List<Device> devices;
     private DevicesAdapter devicesAdapter;
     private View firstShow;
     private Button createControlNumber;
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public int getLayout() {
         return R.layout.fm_devices;
@@ -34,12 +37,16 @@ public class DevicesFragment extends BaseFragment implements DevicesAdapter.OnIt
     @Override
     public void initFragment() {
         firstShow = findViewById(R.id.ll_nodeviceshow);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.device_swipe_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorchoose, R.color.btn_main_color_shadow,
+                R.color.holo_orange_light, R.color.holo_red_light);
         createControlNumber = (Button) findViewById(R.id.btn_regist_child_number);
         rcDevices = (RecyclerView) findViewById(R.id.rv_devices);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rcDevices.setLayoutManager(layoutManager);
 
         createControlNumber.setOnClickListener(this);
+        swipeRefreshLayout.setOnRefreshListener(this);
 
     }
 
@@ -124,6 +131,14 @@ public class DevicesFragment extends BaseFragment implements DevicesAdapter.OnIt
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        logic();
+        Snackbar.make(swipeRefreshLayout, getResources().getString(R.string.refresh_success), Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     public interface OnDeviceChoosed{

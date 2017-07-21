@@ -94,4 +94,6 @@
     <string name="activity_webqrpay_title">支付解锁</string>
 
     <string name="activity_qrcode_title">扫一扫</string>
+
+    <string name="refresh_success">已刷新</string>
 </resources>

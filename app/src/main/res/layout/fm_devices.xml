@@ -3,11 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="#F3F2F3" >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_devices" android:backgroundTint="@color/activity_bg"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/device_swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:background="@color/activity_bg">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent" >
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_devices" android:backgroundTint="@color/activity_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:background="@color/activity_bg">
+            </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <LinearLayout android:visibility="gone"
         android:id="@+id/ll_nodeviceshow"
