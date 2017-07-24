@@ -117,15 +117,15 @@ public class RegisterActivity extends BaseActivity implements LoaderCallbacks<Cu
 
     private void initYSZC() {
         SpannableString msp = new SpannableString(getResources().getString(R.string.app_register_waring));
-        msp.setSpan(new UnderlineSpan(), 19, 29, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        msp.setSpan(new UnderlineSpan(), 19, 27, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         //设置字体前景色
-        msp.setSpan(new ForegroundColorSpan(Color.parseColor("#1377F1")), 19, 29, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //设置前景色为洋红色
+        msp.setSpan(new ForegroundColorSpan(Color.parseColor("#1377F1")), 19, 27, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //设置前景色为洋红色
         msp.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View view) {
                 open(YszcActivity.class);
             }
-        },19,29,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        },19,27,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         yszc.setText(msp);
         yszc.setMovementMethod(LinkMovementMethod.getInstance());
     }

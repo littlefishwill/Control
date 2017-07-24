@@ -186,6 +186,12 @@
     public *** is*();
 }
 
+-keep public class com.lfish.control.db.dao.** {
+    public void set*(***);
+    public *** get*();
+    public *** is*();
+}
+
 #eventBus
 -keepattributes *Annotation*
 -keepclassmembers class ** {
@@ -302,7 +308,10 @@ java.lang.Object readResolve();
 -keep class com.hyphenate.easeui.** {*;}
 -keep class com.hyphenate.easeui.utils.EaseSmileUtils {*;}
 
+#zxing
+-keep class com.uuzuche.lib_zxing.** {*;}
 
+-keep class com.afollestad.materialdialogs.** {*;}
 
 
 #另外，demo中发送表情的时候使用到反射，需要keep SmileUtils,注意前面的包名，
@@ -315,6 +324,9 @@ java.lang.Object readResolve();
 -keep class org.bitlet.** {*;}
 -keep class org.slf4j.** {*;}
 -keep class ch.imvs.** {*;}
+
+#db
+-keep class com.lfish.control.db.**{*;}
 
 
 

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">诡计管家</string>
-    <string name="app_slogen">诡计管家,让鬼计无计可施</string>
+    <string name="app_name">匹诺</string>
+    <string name="app_slogen">匹诺，让 “Ta” 透明一点</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -9,7 +9,7 @@
     <string name="title_activity_register">注 册</string>
     <string name="title_activity_chooseentertype">选择进入类型</string>
     <string name="title_activity_register_yszc">隐私政策</string>
-    <string name="title_activity_child">诡计管家-监控中</string>
+    <string name="title_activity_child">匹诺-监控中</string>
     <string name="title_activity_unlockaction">解锁功能</string>
     <string name="title_activity_guanfang">官方活动</string>
     <string name="dialog_makesure">确 认</string>
@@ -42,9 +42,9 @@
 
     <string name="add_ask_request_caozuo_alert_title">处理提示</string>
 
-    <string name="app_register_waring">点击上面的“注册”按钮，即表示你同意 《诡计管家隐私政策》 </string>
-    <string name="device_testnumber_nick">诡计管家功能体验</string>
-    <string name="device_testnumber_des">点此进入可以“免费”体验诡计管家“所有功能”</string>
+    <string name="app_register_waring">点击上面的“注册”按钮，即表示你同意 《匹诺隐私政策》 </string>
+    <string name="device_testnumber_nick">匹诺功能体验</string>
+    <string name="device_testnumber_des">点此进入可以“免费”体验匹诺“所有功能”</string>
 
     <string name="device_sys_autocreate_childnumber_des">您需要在其他设备上登录“%1$s”（密码同当前登录账号密码一致），既可操作 %2$s 登录的设备</string>
 
