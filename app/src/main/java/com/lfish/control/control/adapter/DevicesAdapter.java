@@ -1,15 +1,21 @@
 package com.lfish.control.control.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.lfish.control.R;
 import com.lfish.control.action.BaseAction;
+import com.lfish.control.child.ChildControlDeviceActivity;
 import com.lfish.control.db.dao.Device;
+import com.lfish.control.user.UserManager;
 
 import java.util.List;
 
@@ -50,6 +56,15 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.ActionHo
                 }
             }
         });
+        holder.contain.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(onItemClickListener!=null){
+                    onItemClickListener.onLongClick(position,device);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -81,5 +96,6 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.ActionHo
 
     public interface OnItemClickListener{
         void onClick(int pos,Device device);
+        void onLongClick(int pos,Device device);
     }
 }

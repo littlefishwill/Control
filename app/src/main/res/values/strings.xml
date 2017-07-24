@@ -96,4 +96,7 @@
     <string name="activity_qrcode_title">扫一扫</string>
 
     <string name="refresh_success">已刷新</string>
+
+
+    <string name="device_rename_des">请输入备注名</string>
 </resources>

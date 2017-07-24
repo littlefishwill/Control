@@ -7,9 +7,9 @@
     <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <AutoCompleteTextView android:id="@+id/atv_dialog_pass" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="@string/ask_need_password_hint"
-            android:inputType="textPassword" android:maxLines="1" android:numeric="integer"
+        <AutoCompleteTextView android:id="@+id/atv_dialog_normal_text" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/device_rename_des"
+            android:inputType="text" android:maxLines="1" android:numeric="integer"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
