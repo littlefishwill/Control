@@ -17,6 +17,7 @@
 #}
 #############################################
 -dontwarn
+-ignorewarning
 #
 # 对于一些基本指令的添加
 #
@@ -172,35 +173,65 @@
 
 #-----------处理实体类---------------
 # 在开发的时候我们可以将所有的实体类放在一个包内，这样我们写一次混淆就行了。
-#-keep public class com.ljd.example.entity.** {
-#    public void set*(***);
-#    public *** get*();
-#    public *** is*();
-#}
-
-
-#-----------处理第三方依赖库---------
-# AndroidEventBus
--keep class org.simple.** { *; }
--keep interface org.simple.** { *; }
--keepclassmembers class * {
-    @org.simple.eventbus.Subscriber <methods>;
+-keep public class com.lfish.control.http.damian.** {
+    public void set*(***);
+    public *** get*();
+    public *** is*();
 }
 
-# EventBus
+# 在开发的时候我们可以将所有的实体类放在一个包内，这样我们写一次混淆就行了。
+-keep public class com.lfish.control.user.dao.** {
+    public void set*(***);
+    public *** get*();
+    public *** is*();
+}
+
+#eventBus
 -keepattributes *Annotation*
 -keepclassmembers class ** {
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
 
-# Gson
-#-keepattributes Signature-keepattributes *Annotation*
+#glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+#gson
+##---------------Begin: proguard configuration for Gson  ----------
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
 -keep class sun.misc.Unsafe { *; }
--keep class com.google.gson.stream.** { *; }
-# 使用Gson时需要配置Gson的解析对象及变量都不混淆。不然Gson会找不到变量。
-# 将下面替换成自己的实体类
--keep class com.example.bean.** { *; }
+#-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+
+#Serializable
+# Explicitly preserve all serialization members. The Serializable interface
+# is only a marker interface, so it wouldn't save them.
+-keepclassmembers class * implements java.io.Serializable {
+static final long serialVersionUID;
+private static final java.io.ObjectStreamField[] serialPersistentFields;
+private void writeObject(java.io.ObjectOutputStream);
+ private void readObject(java.io.ObjectInputStream);
+ java.lang.Object writeReplace();
+java.lang.Object readResolve();
+}
+-keep public class * implements java.io.Serializable {*;}
+
 
 # OrmLite
 -keepattributes *DatabaseField*
@@ -213,25 +244,79 @@
 -keep interface com.j256.**
 -keepclassmembers interface com.j256.** { *; }
 
-# OkHttp3
--dontwarn com.squareup.okhttp3.**
--keep class com.squareup.okhttp3.** { *;}
--dontwarn okio.**
-
 # xutils
--keep class org.xutils.** { *;}
+-keep class com.lfish.control.http.**{*;}
+-keep class org.xutils.**
+-keepclassmembers class org.xutils.** { *; }
+-keep enum org.xutils.**
+-keepclassmembers enum org.xutils.** { *; }
+-keep interface org.xutils.**
+-keepclassmembers interface org.xutils.** { *; }
 
 # dmytrodanylyk
--keep class com.github.dmytrodanylyk.** { *;}
+-keep class com.github.dmytrodanylyk.shadow-layout.**
+-keepclassmembers class com.github.dmytrodanylyk.shadow-layout.** { *; }
+-keep enum com.github.dmytrodanylyk.shadow-layout.**
+-keepclassmembers enum com.github.dmytrodanylyk.shadow-layout.** { *; }
+-keep interface com.github.dmytrodanylyk.shadow-layout.**
+-keepclassmembers interface com.github.dmytrodanylyk.shadow-layout.** { *; }
+
+# yipianfengye -zxing
+-keep class cn.yipianfengye.android.**
+-keepclassmembers class cn.yipianfengye.android.** { *; }
+-keep enum cn.yipianfengye.android.**
+-keepclassmembers enum cn.yipianfengye.android.** { *; }
+-keep interface cn.yipianfengye.android.**
+-keepclassmembers interface cn.yipianfengye.android.** { *; }
 
 # dmytrodanylyk
--keep class com.github.dmytrodanylyk.** { *;}
+-keep class com.afollestad.material-dialogs.**
+-keepclassmembers class com.afollestad.material-dialogs.** { *; }
+-keep enum com.afollestad.material-dialogs.**
+-keepclassmembers enum com.afollestad.material-dialogs.** { *; }
+-keep interface com.afollestad.material-dialogs.**
+-keepclassmembers interface com.afollestad.material-dialogs.** { *; }
 
 # dmytrodanylyk
--keep class com.afollestad.material-dialogs.** { *;}
+-keep class com.afollestad.material-dialogs.**
+-keepclassmembers class com.afollestad.material-dialogs.** { *; }
+-keep enum com.afollestad.material-dialogs.**
+-keepclassmembers enum com.afollestad.material-dialogs.** { *; }
+-keep interface com.afollestad.material-dialogs.**
+-keepclassmembers interface com.afollestad.material-dialogs.** { *; }
 
-# dmytrodanylyk
--keep class org.greenrobot.** { *;}
+
+#huanxin
+-keep class org.xmlpull.** {*;}
+-keep class com.baidu.** {*;}
+-keep public class * extends com.umeng.**
+-keep class com.umeng.** { *; }
+-keep class com.squareup.picasso.* {*;}
+
+-keep public class com.hyphenate.easeui.**
+
+-keep class com.hyphenate.** {*;}
+-keep class com.hyphenate.chat.** {*;}
+-keep class org.jivesoftware.** {*;}
+-keep class org.apache.** {*;}
+-keep class com.hyphenate.easeui.** {*;}
+-keep class com.hyphenate.easeui.utils.EaseSmileUtils {*;}
+
+
+
+
+#另外，demo中发送表情的时候使用到反射，需要keep SmileUtils,注意前面的包名，
+#不要SmileUtils复制到自己的项目下keep的时候还是写的demo里的包名
+-keep class com.hyphenate.chatuidemo.utils.SmileUtils {*;}
+
+#2.0.9后加入语音通话功能，如需使用此功能的api，加入以下keep
+-keep class net.java.sip.** {*;}
+-keep class org.webrtc.voiceengine.** {*;}
+-keep class org.bitlet.** {*;}
+-keep class org.slf4j.** {*;}
+-keep class ch.imvs.** {*;}
+
+
 
 
 
