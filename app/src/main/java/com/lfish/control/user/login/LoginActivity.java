@@ -33,6 +33,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hyphenate.EMCallBack;
 import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
@@ -324,13 +325,43 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
             @Override
             public void onFail(String message, int code) {
-                showError(mLoginFormView, message);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        showProgress(false);
-                    }
-                });
+                if(code==-6){
+                    showError(mLoginFormView, "账号出现登录异常，正在修复，请稍后重试...");
+                    EMClient.getInstance().logout(true, new EMCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            UserManager.getInstance().loginOut(LoginActivity.this);
+                            open(LoginActivity.class);
+                            finish();
+                            showError(mLoginFormView, "请重试登录");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showProgress(false);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(int i, String s) {
+
+                        }
+
+                        @Override
+                        public void onProgress(int i, String s) {
+
+                        }
+                    });
+                }else{
+                    showError(mLoginFormView, message);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showProgress(false);
+                        }
+                    });
+                }
+
             }
         });
     }
