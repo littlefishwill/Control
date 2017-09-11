@@ -49,11 +49,8 @@ public class ChildAskRequestActivity extends BaseActivity {
             e.printStackTrace();
         }
 
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         askRequestView.setLayoutManager(layoutManager);
-
-
 
     }
 

@@ -19,3 +19,4 @@
 #   public *;
 #}
 -keepattributes EnclosingMethod
+-keepattributes SourceFile,LineNumberTable

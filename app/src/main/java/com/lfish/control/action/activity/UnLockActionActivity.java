@@ -54,7 +54,7 @@ public class UnLockActionActivity extends BaseActivity {
 //        unLockPay = (Button) findViewById(R.id.bt_unlock_action_pay);
 
         acitonIco.setImageResource(baseBeanCmd.getDrawable());
-        Glide.with(this).load(baseBeanCmd.getMenuIco()).placeholder(R.drawable.loddingaction_ico).into(acitonIco);
+        Glide.with(this).load(baseBeanCmd.getMenuIco()).placeholder(R.drawable.loddingaction_ico2).into(acitonIco);
         actionName.setText(baseBeanCmd.getMenuName());
         actionDes.setText("功能描述："+baseBeanCmd.getMenuDes());
 

@@ -38,7 +38,7 @@
             android:background="#EEEDEB"></View>
         <RelativeLayout
             android:layout_weight="1"
-            android:id="@+id/rl_wechat"
+            android:id="@+id/rl_wechat" android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="100dp">
 

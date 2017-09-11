@@ -1,5 +1,7 @@
 package com.lfish.control.action.actiontool;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -17,11 +19,13 @@ import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
@@ -33,6 +37,8 @@ import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -210,7 +216,7 @@ public class Utils {
 				}
 			}
 		} catch (SocketException ex) {
-			Log.e("WifiPreference IpAddress", ex.toString());
+			Log.e("WifiPref IpAddress", ex.toString());
 		}
 		return null;
 	}
@@ -253,63 +259,8 @@ public class Utils {
 		return "";
 	}
 
-	/**
-	 * Get device net flag
-	 */
-	private static String isFastMobileNetwork(Context context) {
-		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
-		switch (telephonyManager.getNetworkType()) {
-			case TelephonyManager.NETWORK_TYPE_GPRS:
-			case TelephonyManager.NETWORK_TYPE_EDGE:
-			case TelephonyManager.NETWORK_TYPE_CDMA:
-			case TelephonyManager.NETWORK_TYPE_1xRTT:
-			case TelephonyManager.NETWORK_TYPE_IDEN:
-				return ShareUtils.NETWOKR_TYPE_2G;
-			case TelephonyManager.NETWORK_TYPE_UMTS:
-			case TelephonyManager.NETWORK_TYPE_EVDO_0:
-			case TelephonyManager.NETWORK_TYPE_EVDO_A:
-			case TelephonyManager.NETWORK_TYPE_HSDPA:
-			case TelephonyManager.NETWORK_TYPE_HSUPA:
-			case TelephonyManager.NETWORK_TYPE_HSPA:
-			case TelephonyManager.NETWORK_TYPE_EVDO_B:
-			case TelephonyManager.NETWORK_TYPE_EHRPD:
-			case TelephonyManager.NETWORK_TYPE_HSPAP:
-				return ShareUtils.netStatus_default;
-			case TelephonyManager.NETWORK_TYPE_LTE:
-				return ShareUtils.NETWOKR_TYPE_4G;
-			default:
-				return ShareUtils.netStatus_default;
-		}
-	}
 
-	/**
-	 * Get device net status
-	 */
-	public static String GetNetStatus(Context context) {
-		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (connectivityManager != null) {
-			NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-			if (info != null && info.isAvailable()) {
-				String name = info.getTypeName();
-				if (!name.equals(ShareUtils.NETWORK_TYPE_WIFI)) {
-					name = isFastMobileNetwork(context);
-				}
-				ShareUtils.putString(context, ShareUtils.Config, ShareUtils.netStatus, name);
-//				Intent intent1 = new Intent();
-//				intent1.setClass(context, CoreService.class);
-//				context.startService(intent1);
-				MyLog.d("mark", "current netstatus" + name);
-				return name;
-			} else {
-				ShareUtils.putString(context, ShareUtils.Config, ShareUtils.netStatus, "");
-				MyLog.d("mark", "no avalid network");
-				return "";
-			}
-		} else {
-			return "";
-		}
-	}
 
 	/**
 	 * Get device Current time yyyy_MM_dd_HH_mm_ss

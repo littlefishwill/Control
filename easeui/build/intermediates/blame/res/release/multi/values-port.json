@@ -1,29 +1,5 @@
 [
     {
-        "outputFile": "D:\\control\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\values-port\\values-port.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 55,
-                    "endOffset": 106
-                },
-                "from": {
-                    "file": "D:\\control\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-port\\values-port.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 291,
-                        "endColumn": 55,
-                        "endOffset": 342
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\values-port\\values-port.xml",
         "map": [
             {
@@ -35,13 +11,13 @@
                     "endOffset": 106
                 },
                 "from": {
-                    "file": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.1\\res\\values-port\\values-port.xml",
+                    "file": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-port\\values-port.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 291,
+                        "startOffset": 55,
                         "endColumn": 55,
-                        "endOffset": 342
+                        "endOffset": 106
                     }
                 }
             }

@@ -53,6 +53,7 @@ public class MainActivity extends BaseActivity
     private ContacUsFragment contacUsFragment;
     private CustomMadeFragment customMadeFragment;
     private int cacheId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

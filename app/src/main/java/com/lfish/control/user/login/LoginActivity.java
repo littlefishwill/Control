@@ -3,18 +3,15 @@ package com.lfish.control.user.login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -28,13 +25,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import com.hyphenate.EMCallBack;
-import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.lfish.control.BaseActivity;
@@ -42,7 +35,6 @@ import com.lfish.control.ControlApplication;
 import com.lfish.control.MainActivity;
 import com.lfish.control.R;
 import com.lfish.control.child.ChildShowActivity;
-import com.lfish.control.http.BaseResultData;
 import com.lfish.control.http.HttpBaseCallBack;
 import com.lfish.control.http.HttpManager;
 import com.lfish.control.http.HttpResultCode;
@@ -51,13 +43,10 @@ import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.listener.LoginListener;
 import com.lfish.control.user.register.RegisterActivity;
-import com.lfish.control.utils.Md5;
 import com.lfish.control.utils.MyLog;
 import com.lfish.control.utils.PhoneUtils;
 import com.lfish.control.utils.Sputils;
 import com.lfish.control.view.dialog.EnterDialog;
-
-import org.apache.commons.logging.Log;
 
 /**
  * A login screen that offers login via email/password.
@@ -66,6 +55,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     public static boolean needAutoLogin =false;
     public static String needAutoLogin_username;
     public static String needAutoLogin_password;
+
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -255,7 +245,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                             Sputils.getInstance(ControlApplication.context).putObject(HttpManager.getInstance(), HttpManager.HTTP_USER, mEmailView.getText().toString());
                             MyLog.i("Login",data.getToken()+" ? "+data.getUuid()+" ? "+ PhoneUtils.getInstance().getImei(LoginActivity.this));
                         }
-
                     } else {
                         MyLog.i("Login-Fila",PhoneUtils.getInstance().getImei(ControlApplication.context));
                         showProgress(false);
@@ -298,8 +287,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                                     case ControlChild:
                                         open(ChildShowActivity.class);
                                         finish();
-                                        break;
-                                }
+                                        break;                                }
+
                             }
                         });
                         enterDialog.show();

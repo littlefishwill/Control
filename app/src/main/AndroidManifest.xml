@@ -154,6 +154,11 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+        </service>
+        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="DZn5sjX3jwPCMsoc7YF82GbM"/>
+
     </application>
 
 </manifest>

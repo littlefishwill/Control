@@ -3,6 +3,7 @@ package com.lfish.control.action.actiondomian;
 import com.lfish.control.ControlApplication;
 import com.lfish.control.action.BaseBeanAction;
 import com.lfish.control.action.actiontool.Utils;
+import com.lfish.control.action.actiontool.WifiUtils;
 
 public class GetDeviceMsgAction extends BaseBeanAction {
 
@@ -19,7 +20,7 @@ public class GetDeviceMsgAction extends BaseBeanAction {
 		bf.append("\r\n");
 		bf.append("系统:"+android.os.Build.VERSION.RELEASE);
 		bf.append("\r\n");
-		bf.append("网络:"+ Utils.GetNetStatus(ControlApplication.context));
+		bf.append("网络:"+ WifiUtils.GetNetStatus(ControlApplication.context));
 		sendTxt(bf.toString());
 	}
 }

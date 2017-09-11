@@ -139,7 +139,7 @@ public class EaseChatExtendMenu extends GridView{
             }
             menuItem = (ChatMenuItem) convertView;
             menuItem.setImage(getItem(position).image);
-            Glide.with(context).load(getItem(position).imageServer).placeholder(R.drawable.loddingaction_ico).into(menuItem.imageView);
+            Glide.with(context).load(getItem(position).imageServer).placeholder(R.drawable.loddingaction_ico2).into(menuItem.imageView);
             menuItem.setText(getItem(position).name);
 
             if(isTestNumber){
