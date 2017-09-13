@@ -62,6 +62,7 @@ public class ActionFactory {
 //		actionSet.put(new GetWeChatSdCmd().getCmdNumber(), GetWeChatSdAction.class);
 //		actionSet.put(new GetQQSdCmd().getCmdNumber(), GetQQSdAction.class);
 		actionSet.put(11, LockScreenAction.class);
+		actionSet.put(13, this.getClass()); // 拦截
 		
 	}
 	

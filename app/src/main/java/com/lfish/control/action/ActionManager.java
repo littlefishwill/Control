@@ -6,7 +6,7 @@ import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.lfish.control.BaseManager;
-import com.lfish.control.action.actiontool.BaiduLocationTool;
+import com.lfish.control.action.actiontool.AliLocationTool;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class ActionManager extends BaseManager {
     public void init(Context context) {
         CmdFactory.getInstance().init();
         ActionFactory.getInstance().init();
-        BaiduLocationTool.getInstace().init(context);
+        AliLocationTool.getInstace().init(context);
         registerEventListener(context);
     }
 

@@ -655,9 +655,9 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
 //                case VideoOnlineCmd.CMDNUMBER:
 ////                    startVideoCall();
 //                    return;
-//                case AudioOnlineCmd.CMDNUMBER:
-//                    startAudioCall();
-//                    return;
+                case 13:
+                    startAudioCall();
+                    return;
                 case LockScreenCmd.CMDNUMBER:
                     startLockScreendLogic();
                     return;

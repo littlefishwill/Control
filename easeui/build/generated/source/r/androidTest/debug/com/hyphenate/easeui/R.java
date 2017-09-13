@@ -967,16 +967,17 @@ public final class R {
 		public static final int ee_8 = 0x7f020107;
 		public static final int ee_9 = 0x7f020108;
 		public static final int ic_launcher = 0x7f020109;
-		public static final int ico_send_message = 0x7f02010a;
-		public static final int imageico = 0x7f02010b;
-		public static final int lock_action = 0x7f02010c;
-		public static final int loddingaction_ico = 0x7f02010d;
-		public static final int loddingaction_ico2 = 0x7f02010e;
-		public static final int navigation_empty_icon = 0x7f02010f;
-		public static final int notification_template_icon_bg = 0x7f020113;
-		public static final int shape_chatfm_title_bg = 0x7f020110;
-		public static final int textico = 0x7f020111;
-		public static final int zipico = 0x7f020112;
+		public static final int ico_ali_posation_ico = 0x7f02010a;
+		public static final int ico_send_message = 0x7f02010b;
+		public static final int imageico = 0x7f02010c;
+		public static final int lock_action = 0x7f02010d;
+		public static final int loddingaction_ico = 0x7f02010e;
+		public static final int loddingaction_ico2 = 0x7f02010f;
+		public static final int navigation_empty_icon = 0x7f020110;
+		public static final int notification_template_icon_bg = 0x7f020114;
+		public static final int shape_chatfm_title_bg = 0x7f020111;
+		public static final int textico = 0x7f020112;
+		public static final int zipico = 0x7f020113;
 	}
 	public static final class id {
 		public static final int action0 = 0x7f0b00e2;

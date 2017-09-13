@@ -7,6 +7,10 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 24
+//        ndk {
+//            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+//            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64"
+//        }
     }
 	
 	sourceSets {
@@ -49,4 +53,12 @@ dependencies {
     compile 'com.android.support:support-v4:24.0.0-alpha2'
     compile 'com.android.support:design:24.+'
     compile 'info.hoang8f:fbutton:1.0.5'
+
+    //ali 3D 地图
+    compile 'com.amap.api:3dmap:latest.integration'
+    // ali 2D地图
+    compile 'com.amap.api:map2d:latest.integration'
+
+   // ali 定位
+    compile 'com.amap.api:location:latest.integration'
 }

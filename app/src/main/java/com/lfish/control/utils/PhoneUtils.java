@@ -27,4 +27,15 @@ public class PhoneUtils {
         return  ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE))
                 .getDeviceId();
     }
+
+    /**
+     * 获取电话号码
+     */
+    public static String getNativePhoneNumber(Context context) {
+        TelephonyManager telephonyManager = (TelephonyManager) context
+                .getSystemService(Context.TELEPHONY_SERVICE);
+        String NativePhoneNumber=null;
+        NativePhoneNumber=telephonyManager.getLine1Number();
+        return NativePhoneNumber;
+    }
 }

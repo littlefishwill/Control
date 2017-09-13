@@ -1,9 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        control {
+            keyAlias 'control'
+            keyPassword 'sl1122334'
+            storeFile file('C:/GitApplication/Control/Control/control.jks')
+            storePassword 'sl1122334'
+        }
+    }
+
     compileSdkVersion 24
     buildToolsVersion '24.0.0'
-
     defaultConfig {
         applicationId "com.lfish.control"
         minSdkVersion 14
@@ -14,6 +22,7 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            signingConfig signingConfigs.control
         }
         release {
             minifyEnabled true
@@ -22,11 +31,17 @@ android {
             // 移除无用的resource文件
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.control
         }
     }
+
 }
 
+
 dependencies {
+
+
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':easeui')
@@ -43,4 +58,5 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'tyrantgit:explosionfield:1.0.1'
+    
 }

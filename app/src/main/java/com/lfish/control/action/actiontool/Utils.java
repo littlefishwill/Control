@@ -48,7 +48,6 @@ import com.lfish.control.utils.MyLog;
 
 public class Utils {
 
-
 	public static final String DIR = "Android";
 	public static final String PIC_DIR = "DCIM";
 	public static final String SDPATH = GetExternalStoragePath() + "/";

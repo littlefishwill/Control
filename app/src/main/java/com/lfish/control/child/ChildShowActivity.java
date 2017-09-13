@@ -10,21 +10,17 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hyphenate.EMCallBack;
-import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.lfish.control.BaseActivity;
 import com.lfish.control.Config;
@@ -35,6 +31,7 @@ import com.lfish.control.db.AskInfoDao;
 import com.lfish.control.db.dao.AskInfo;
 import com.lfish.control.event.ContactAsk;
 import com.lfish.control.http.HttpManager;
+import com.lfish.control.receiver.StartReceiver;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
@@ -90,6 +87,8 @@ public class ChildShowActivity extends BaseActivity {
         yinSiLogic();
 
         mdmLogic();
+
+
     }
 
     private void mdmLogic() {
@@ -125,6 +124,9 @@ public class ChildShowActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         askListLogic();
+
+        Intent service = new Intent(this,StartReceiver.class);
+        stopService(service);
     }
 
     private void controlListLogic() {
@@ -170,10 +172,15 @@ public class ChildShowActivity extends BaseActivity {
         EventBus.getDefault().register(this);
     }
 
+
+
     @Override
     protected void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+
+        Intent service = new Intent(this,StartReceiver.class);
+        startService(service);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -324,6 +331,8 @@ public class ChildShowActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     /**
      * 跳转到权限设置界面

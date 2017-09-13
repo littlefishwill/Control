@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.hyphenate.chat.EMCallStateChangeListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.EMNoActiveCallException;
@@ -303,6 +305,7 @@ public class AudioCallActivity extends BaseActivity {
     }
 
     public void endCall(){
+        Toast.makeText(AudioCallActivity.this,"抱歉,对方不在线",Toast.LENGTH_LONG).show();
         /**
          * 挂断通话
          */

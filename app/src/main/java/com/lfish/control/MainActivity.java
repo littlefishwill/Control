@@ -1,8 +1,12 @@
 package com.lfish.control;
 
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -53,6 +57,8 @@ public class MainActivity extends BaseActivity
     private ContacUsFragment contacUsFragment;
     private CustomMadeFragment customMadeFragment;
     private int cacheId;
+    private View headContain;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +82,11 @@ public class MainActivity extends BaseActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         TextView name = (TextView) headerView.findViewById(R.id.tv_main_nav_head_user);
+        headContain = headerView.findViewById(R.id.nav_view);
         name.setText("欢迎您到到来, " + UserManager.getInstance().getLoginUser(this).getUserName());
         TextView version = (TextView) headerView.findViewById(R.id.tv_main_nav_head_version);
         version.setText(getResources().getString(R.string.app_slogen) + " " + getAppVersionName(this));
@@ -88,6 +95,22 @@ public class MainActivity extends BaseActivity
         //刷新功能列表
         HttpManager.getInstance().getAndRefreshActionList();
 
+        setHeadBackGround();
+
+
+    }
+
+    private void setHeadBackGround() {
+        // 获取壁纸管理器
+        WallpaperManager wallpaperManager = WallpaperManager
+                .getInstance(MainActivity.this);
+        // 获取当前壁纸
+        Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+        // 将Drawable,转成Bitmap
+        Bitmap bm = ((BitmapDrawable) wallpaperDrawable).getBitmap();
+        // 设置 背景
+
+        navigationView.getHeaderView(0).setBackgroundDrawable(wallpaperDrawable);
 
     }
 

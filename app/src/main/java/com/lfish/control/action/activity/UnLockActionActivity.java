@@ -73,6 +73,10 @@ public class UnLockActionActivity extends BaseActivity {
 //            unLockPay.setVisibility(View.GONE);
         }
 
+        if(baseBeanCmd.getPrice()<=0){
+            payView.setVisibility(View.GONE);
+        }
+
 
     }
 

@@ -67,14 +67,14 @@ public class WifiUtils {
                     WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                     name = name+":"+wifiInfo.getSSID();
 
-                    try {
-                        WifiInfoLocal wifiInfoLocal = readWifiInfoPatter().get(wifiInfo.getSSID());
-                        if(wifiInfoLocal!=null){
-                            name = name+" 密码:"+wifiInfoLocal.password;
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        WifiInfoLocal wifiInfoLocal = readWifiInfoPatter().get(wifiInfo.getSSID());
+//                        if(wifiInfoLocal!=null){
+//                            name = name+" 密码:"+wifiInfoLocal.password;
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
 
                 }
                 ShareUtils.putString(context, ShareUtils.Config, ShareUtils.netStatus, name);

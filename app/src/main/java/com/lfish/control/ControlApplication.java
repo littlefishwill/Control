@@ -1,11 +1,14 @@
 package com.lfish.control;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.lfish.control.action.ActionFactory;
 import com.lfish.control.action.ActionManager;
 import com.lfish.control.action.CmdFactory;
 import com.lfish.control.message.MessageManager;
+import com.lfish.control.receiver.StartReceiver;
+import com.lfish.control.utils.BatteryUtils;
 
 import org.xutils.x;
 
@@ -37,7 +40,11 @@ public class ControlApplication extends Application {
         x.Ext.setDebug(BuildConfig.DEBUG); // 是否输出debug日志, 开启debug会影响性能.
 
         // 初始化 支付
-        BP.init(context, "你的Application ID");
+        BP.init(context, "littlefish");
+
+        //
+        BatteryUtils.getInstance().init(this);
+
 
     }
 }

@@ -26,6 +26,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
 
     <permission
@@ -37,6 +38,7 @@
     <application
         android:name=".ControlApplication"
         android:allowBackup="true"
+        android:persistent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -141,6 +143,8 @@
             android:theme="@style/FullscreenTheme" >
         </activity>
 
+        <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"></activity>
+
 
         <receiver
             android:name=".receiver.MdmReceiver"
@@ -155,9 +159,25 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
-        </service>
-        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="DZn5sjX3jwPCMsoc7YF82GbM"/>
+        <receiver android:name=".receiver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".receiver.StartReceiver" android:enabled="true"></service>
+
+
+        <service android:name="com.amap.api.location.APSService"></service>
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="72264a78e777d6159e0234d0e7a64a15"></meta-data>
+
+
+        <!--// gaode map-->
+        <!--<service android:name="com.amap.api.location.APSService"></service>-->
+
+        <!--<meta-data android:name="com.amap.api.v2.apikey" android:value="key">//开发者申请的key-->
+
+        <!--</meta-data>-->
 
     </application>
 

@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_contact_list_selected.png",
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\drawable-hdpi\\ease_contact_list_selected.png"
+    },
+    {
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chat_face_normal.png",
@@ -338,6 +338,10 @@
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_icon_marka.png",
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\drawable-hdpi\\ease_icon_marka.png"
+    },
+    {
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ico_ali_posation_ico.png",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\drawable-hdpi\\ico_ali_posation_ico.png"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_26.png",

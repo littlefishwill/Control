@@ -3152,16 +3152,17 @@ containing a value of this type.
         public static int ee_8=0x7f020107;
         public static int ee_9=0x7f020108;
         public static int ic_launcher=0x7f020109;
-        public static int ico_send_message=0x7f02010a;
-        public static int imageico=0x7f02010b;
-        public static int lock_action=0x7f02010c;
-        public static int loddingaction_ico=0x7f02010d;
-        public static int loddingaction_ico2=0x7f02010e;
-        public static int navigation_empty_icon=0x7f02010f;
-        public static int notification_template_icon_bg=0x7f020113;
-        public static int shape_chatfm_title_bg=0x7f020110;
-        public static int textico=0x7f020111;
-        public static int zipico=0x7f020112;
+        public static int ico_ali_posation_ico=0x7f02010a;
+        public static int ico_send_message=0x7f02010b;
+        public static int imageico=0x7f02010c;
+        public static int lock_action=0x7f02010d;
+        public static int loddingaction_ico=0x7f02010e;
+        public static int loddingaction_ico2=0x7f02010f;
+        public static int navigation_empty_icon=0x7f020110;
+        public static int notification_template_icon_bg=0x7f020114;
+        public static int shape_chatfm_title_bg=0x7f020111;
+        public static int textico=0x7f020112;
+        public static int zipico=0x7f020113;
     }
     public static final class id {
         public static int action0=0x7f0b00e2;
