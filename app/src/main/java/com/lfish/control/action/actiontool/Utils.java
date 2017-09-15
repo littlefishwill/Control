@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
@@ -20,6 +21,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -27,11 +30,18 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
@@ -39,6 +49,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -365,4 +376,59 @@ public class Utils {
 //		session.write(buffers);
 //	//	logger.info(write.isWritten());
 //	}
+
+	public static String getCurreentRuningAppInfo(Context context) {
+		ActivityManager mActivityManager;
+		mActivityManager = (ActivityManager) context.getSystemService(
+				Context.ACTIVITY_SERVICE);
+		PackageManager packageManager = context.getPackageManager();
+		String packageName = null, lable;
+		// 5.0及其以后的版本
+		if (Build.VERSION.SDK_INT > 21) {
+			// 5.0及其以后的版本
+			return "未知";
+		}else{
+				// 5.0之前 // 获取正在运行的任务栈(一个应用程序占用一个任务栈) 最近使用的任务栈会在最前面
+			ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+			ActivityManager.RunningTaskInfo info = manager.getRunningTasks(1).get(0);
+	        //完整类名
+			String packageName1 = info.topActivity.getPackageName();
+			//Log.i(TAG,packageName);
+		   return getAppInfoByPackageName(context,packageName1);
+
+		}
+		}
+
+	public static String getAppInfoByPackageName(Context context,String packageName){
+// TODO Auto-generated constructor stub
+		PackageManager packageManager = context.getPackageManager();
+		ApplicationInfo applicationInfo = null;
+		try {
+			applicationInfo = packageManager.getPackageInfo(packageName, 0).applicationInfo;
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		return applicationInfo.loadLabel(packageManager).toString();
+	}
+
+	public static String getRunningProcess(Context context){
+
+		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		//获取正在运行的应用
+		List<ActivityManager.RunningAppProcessInfo> run = am.getRunningAppProcesses();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for(ActivityManager.RunningAppProcessInfo ra : run){
+			//这里主要是过滤系统的应用和电话应用，当然你也可以把它注释掉。
+			if(ra.processName.equals("system") || ra.processName.equals("com.android.phone")){
+				continue;
+			}
+
+			stringBuilder.append(getAppInfoByPackageName(context,ra.processName));
+
+		}
+		return stringBuilder.toString();
+	}
+
+
 }

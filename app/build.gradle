@@ -18,6 +18,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         debug {
@@ -40,8 +41,6 @@ android {
 
 dependencies {
 
-
-
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':easeui')
@@ -58,5 +57,7 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'tyrantgit:explosionfield:1.0.1'
+    // mult dex
+    compile 'com.android.support:multidex:1.0.1'
     
 }

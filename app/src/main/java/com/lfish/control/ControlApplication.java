@@ -1,13 +1,11 @@
 package com.lfish.control;
 
-import android.app.Application;
-import android.content.Intent;
+import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
-import com.lfish.control.action.ActionFactory;
 import com.lfish.control.action.ActionManager;
-import com.lfish.control.action.CmdFactory;
 import com.lfish.control.message.MessageManager;
-import com.lfish.control.receiver.StartReceiver;
 import com.lfish.control.utils.BatteryUtils;
 
 import org.xutils.x;
@@ -17,7 +15,7 @@ import c.b.BP;
 /**
  * Created by SuZhiwei on 2016/7/2.
  */
-public class ControlApplication extends Application {
+public class ControlApplication extends MultiDexApplication {
 
     public static ControlApplication context;
 
@@ -27,6 +25,12 @@ public class ControlApplication extends Application {
         context = this;
         initFrame();
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     private void initFrame() {

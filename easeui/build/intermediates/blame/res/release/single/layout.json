@@ -52,12 +52,12 @@
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_row_received_video_call.xml"
     },
     {
-        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_item_subheader.xml",
-        "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_item_subheader.xml"
-    },
-    {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_dropdown_item_icons_2line.xml",
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_item_subheader.xml",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\design_layout_tab_text.xml",
@@ -92,12 +92,12 @@
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_chat_menu_item.xml"
     },
     {
-        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_file.xml",
-        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_row_sent_file.xml"
-    },
-    {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_fragment_contact_list.xml",
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_fragment_contact_list.xml"
+    },
+    {
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_file.xml",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_row_sent_file.xml"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_voice.xml",
@@ -132,12 +132,12 @@
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_layout_chat_primary_menu.xml"
     },
     {
-        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_scroll_tab_item.xml",
-        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_scroll_tab_item.xml"
-    },
-    {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_switch_button.xml",
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_widget_switch_button.xml"
+    },
+    {
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_scroll_tab_item.xml",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_scroll_tab_item.xml"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_video.xml",
@@ -148,16 +148,16 @@
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_widget_chat_input_menu.xml"
     },
     {
-        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_expression.xml",
-        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_row_expression.xml"
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_fragment_chat.xml",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_fragment_chat.xml"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_bigexpression.xml",
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_row_sent_bigexpression.xml"
     },
     {
-        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_fragment_chat.xml",
-        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_fragment_chat.xml"
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_expression.xml",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\res\\layout\\ease_row_expression.xml"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_radio.xml",
@@ -168,12 +168,12 @@
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_menu.xml"
     },
     {
-        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_layout.xml",
-        "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_list_menu_item_layout.xml"
-    },
-    {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\design_layout_tab_icon.xml",
         "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_layout.xml",
+        "source": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
         "merged": "C:\\GitApplication\\Control\\Control\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_file.xml",

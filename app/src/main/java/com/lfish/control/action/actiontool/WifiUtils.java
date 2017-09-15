@@ -51,6 +51,7 @@ public class WifiUtils {
                 return ShareUtils.netStatus_default;
         }
     }
+
     /**
      * Get device net status
      */
@@ -66,15 +67,6 @@ public class WifiUtils {
                     WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
                     WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                     name = name+":"+wifiInfo.getSSID();
-
-//                    try {
-//                        WifiInfoLocal wifiInfoLocal = readWifiInfoPatter().get(wifiInfo.getSSID());
-//                        if(wifiInfoLocal!=null){
-//                            name = name+" 密码:"+wifiInfoLocal.password;
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
 
                 }
                 ShareUtils.putString(context, ShareUtils.Config, ShareUtils.netStatus, name);

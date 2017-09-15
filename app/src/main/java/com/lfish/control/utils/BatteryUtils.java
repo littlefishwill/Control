@@ -23,6 +23,7 @@ public class BatteryUtils {
         }
         return batteryUtils;
     }
+
     public void init(Context context){
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         receiver = new BatteryReceiver();

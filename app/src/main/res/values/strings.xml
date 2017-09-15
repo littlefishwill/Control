@@ -99,4 +99,8 @@
 
 
     <string name="device_rename_des">请输入备注名</string>
+
+    <string name="acc_ser_lable">匹诺监控辅助功能</string>
+
+    <string name="acc_ser_des">匹诺监控辅助功能,有助于您查看获取该手机的用户行为</string>
 </resources>

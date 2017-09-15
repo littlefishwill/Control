@@ -31,12 +31,11 @@ import com.lfish.control.db.AskInfoDao;
 import com.lfish.control.db.dao.AskInfo;
 import com.lfish.control.event.ContactAsk;
 import com.lfish.control.http.HttpManager;
-import com.lfish.control.receiver.StartReceiver;
+import com.lfish.control.service.StartService;
 import com.lfish.control.user.UserManager;
 import com.lfish.control.user.dao.User;
 import com.lfish.control.user.login.LoginActivity;
 import com.lfish.control.utils.DesUtils;
-import com.lfish.control.utils.Md5;
 import com.lfish.control.utils.PhoneUtils;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -125,7 +124,7 @@ public class ChildShowActivity extends BaseActivity {
         super.onResume();
         askListLogic();
 
-        Intent service = new Intent(this,StartReceiver.class);
+        Intent service = new Intent(this,StartService.class);
         stopService(service);
     }
 
@@ -179,7 +178,7 @@ public class ChildShowActivity extends BaseActivity {
         super.onStop();
         EventBus.getDefault().unregister(this);
 
-        Intent service = new Intent(this,StartReceiver.class);
+        Intent service = new Intent(this,StartService.class);
         startService(service);
     }
 

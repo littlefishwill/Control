@@ -168,9 +168,7 @@ public class PTGraph {
 						fTemp.delete();
 					}
 				}
-
 				retBoolean = true;
-
 			}
 		} else {
 			retBoolean = false;

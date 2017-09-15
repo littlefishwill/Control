@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lfish.control" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lfish.control">
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -27,6 +28,8 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
     <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
 
     <permission
@@ -139,11 +142,11 @@
         <activity
             android:name=".control.AudioCallActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_call"
-            android:theme="@style/FullscreenTheme" >
-        </activity>
+        android:label="@string/title_activity_call"
+        android:theme="@style/FullscreenTheme" >
+    </activity>
 
-        <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"></activity>
+    <activity android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"></activity>
 
 
         <receiver
@@ -165,11 +168,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </receiver>
-        <service android:name=".receiver.StartReceiver" android:enabled="true"></service>
+        <service android:name=".service.StartService" android:enabled="true"></service>
 
 
         <service android:name="com.amap.api.location.APSService"></service>
         <meta-data android:name="com.amap.api.v2.apikey" android:value="72264a78e777d6159e0234d0e7a64a15"></meta-data>
+
+
+        <service android:name=".service.PhoneActivityService"
+            android:label="@string/acc_ser_lable"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+        </service>
+
+
 
 
         <!--// gaode map-->
