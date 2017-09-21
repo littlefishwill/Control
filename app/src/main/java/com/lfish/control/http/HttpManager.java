@@ -1,6 +1,7 @@
 package com.lfish.control.http;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.lfish.control.BaseManager;
@@ -22,6 +23,7 @@ import org.xutils.x;
  * Created by SuZhiwei on 2017/5/7.
  */
 public class HttpManager  extends BaseManager{
+
     //------------spdata
     public static final String HTTP_TOKEN = "http_token";
     public static final String HTTP_UUID = "http_uuid";
@@ -43,6 +45,7 @@ public class HttpManager  extends BaseManager{
 
         x.http().post(requestParams, commonCallback);
     }
+
     private static HttpManager httpManager;
     public static HttpManager getInstance(){
         if(httpManager==null){
@@ -95,7 +98,6 @@ public class HttpManager  extends BaseManager{
             @Override
             public void onSuccess(ActionResult result) {
                 if (result.getCode() == HttpResultCode.SUCCESS) {
-
                     for (final ActionResult.ActionResultBean actionResultBean : result.getData()) {
                         BaseBeanCmd cmd = new BaseBeanCmd() {
                             @Override
@@ -118,6 +120,8 @@ public class HttpManager  extends BaseManager{
                                 return 0;
                             }
                         };
+
+                        Log.i("HttpManager",actionResultBean.getMenuName());
                         cmd.setLock(actionResultBean.getUseFlag() == 0 ? true : false);
                         cmd.setPrice(actionResultBean.getNormalPrice());
                         cmd.setMenuName(actionResultBean.getMenuName());

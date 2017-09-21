@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
@@ -27,6 +28,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.hyphenate.EMChatRoomChangeListener;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.EMValueCallBack;
@@ -72,6 +75,7 @@ import com.lfish.control.action.cmddomian.GetDeviceMsgCmd;
 import com.lfish.control.action.cmddomian.GetInstallAppsCmd;
 import com.lfish.control.action.cmddomian.LockScreenCmd;
 import com.lfish.control.action.cmddomian.VideoOnlineCmd;
+import com.lfish.control.action.cmdparams.USerActivityParams;
 import com.lfish.control.control.AudioCallActivity;
 import com.lfish.control.event.ActionListRefresh;
 import com.lfish.control.user.UserManager;
@@ -447,7 +451,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
                 if (locationAddress != null && !locationAddress.equals("")) {
                     sendLocationMessage(latitude, longitude, locationAddress);
                 } else {
-                    Toast.makeText(getActivity(), R.string.unable_to_get_loaction, 0).show();
+                    Toast.makeText(getActivity(), R.string.unable_to_get_loaction,Toast.LENGTH_SHORT).show();
                 }
                 
             }
@@ -661,6 +665,9 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
                 case LockScreenCmd.CMDNUMBER:
                     startLockScreendLogic();
                     return;
+                case 14:
+                    showUserAcitivityChooseDialog();
+                    return;
                 default:
                     break;
             }
@@ -669,6 +676,36 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
             messageList.refresh();
         }
 
+    }
+
+    private void showUserAcitivityChooseDialog() {
+        String[] items = {"发送行为监控", "取消行为监控"};
+        new MaterialDialog.Builder(getActivity())
+                .items(items)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        switch (which){
+                            case 0:
+                               CmdFactory.getInstance().SendCmd(14,toChatUsername,new USerActivityParams(true));
+
+                                messageList.refresh();
+                                break;
+                            case 1:
+                                CmdFactory.getInstance().SendCmd(14,toChatUsername,new USerActivityParams(false),"关闭行为监控");
+
+                                messageList.refresh();
+                                break;
+
+                        }
+                    }
+                }).negativeText("取消").onNegative(new MaterialDialog.SingleButtonCallback() {
+            @Override
+            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+            }
+        })
+                .show();
     }
 
     /**

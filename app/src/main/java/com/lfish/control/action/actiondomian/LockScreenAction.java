@@ -1,11 +1,7 @@
 package com.lfish.control.action.actiondomian;
 
-import android.os.Handler;
-import android.os.Message;
-
 import com.google.gson.Gson;
 import com.lfish.control.ControlApplication;
-import com.lfish.control.action.BaseAction;
 import com.lfish.control.action.BaseBeanAction;
 import com.lfish.control.action.actiontool.MdmUtils;
 import com.lfish.control.action.cmdparams.LockScreenParams;

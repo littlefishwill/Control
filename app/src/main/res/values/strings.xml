@@ -103,4 +103,7 @@
     <string name="acc_ser_lable">匹诺监控辅助功能</string>
 
     <string name="acc_ser_des">匹诺监控辅助功能,有助于您查看获取该手机的用户行为</string>
+
+
+    <string name="action_cmd_user_activity">行为监控</string>
 </resources>

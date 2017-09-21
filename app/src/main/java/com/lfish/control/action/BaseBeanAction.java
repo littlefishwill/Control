@@ -1,15 +1,9 @@
 package com.lfish.control.action;
 
-import java.io.File;
 import java.io.Serializable;
-import java.util.Properties;
-
 import com.google.gson.Gson;
-import com.hyphenate.chat.EMChatManager;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
-import com.lfish.control.BaseActivity;
 
 public abstract class BaseBeanAction implements Serializable,Runnable {
 	/**
@@ -103,7 +97,7 @@ public abstract class BaseBeanAction implements Serializable,Runnable {
 
 	public void sendTxt(String txt){
 		EMMessage message = EMMessage.createTxtSendMessage(txt, getFrom());
-//发送消息
+		//发送消息
 		EMClient.getInstance().chatManager().sendMessage(message);
 	}
 

